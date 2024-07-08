@@ -1,9 +1,9 @@
 ---
-title: "Sample Report - Data Science Capstone"
+title: "LASSO Regression"
 <<<<<<< HEAD
 author: "Kayla Hayes, HJ Kim, Kristy Tarano, Andrew Melara-Suazo"
 =======
-author: "Kayla Hayes"
+author: "Kayla Hayes, HJ Kim, Kristy Tarano, Andrew Melara-Suazo"
 >>>>>>> 91a15975feaec0a7f2efe4ad2cb4a7f2bdfa6de1
 date: '`r Sys.Date()`'
 format:
