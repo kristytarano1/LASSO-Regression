@@ -1,6 +1,6 @@
 ---
 title: "Sample Report - Data Science Capstone"
-author: "Student name"
+author: "Kayla Hayes, HJ Kim, Kristy Tarano, Andrew Melara-Suazo"
 date: '`r Sys.Date()`'
 format:
   html:
