@@ -1,0 +1,46 @@
+Item,Type,Description
+Patient ID,String,ID
+Patient Age,Integer,Age
+Genes in mother's side,Boolean,Cause
+Inherited from father,Boolean,Cause
+Maternal gene,Boolean,Cause
+Paternal gene,Boolean,Cause
+Blood cell count (mcL),Decimal,Count
+Patient First Name,String,Name
+Family Name,String,Name
+Father's name,String,Name
+Mother's age,Integer,Age
+Father's age,Integer,Age
+Institute Name,String,Name
+Location of Institute,String,Address
+Status,Boolean,Life
+Respiratory Rate (breaths/min),Boolean,Symptom
+Heart Rate (rates/min,Boolean,Symptom
+Test 1,Boolean,Not identified
+Test 2,Boolean,Not identified
+Test 3,Boolean,Not identified
+Test 4,Boolean,Not identified
+Test 5,Boolean,Not identified
+Parental consent,Boolean,Consent
+Follow-up,Boolean,Depth of research
+Gender,Categorical,Gender
+Birth asphyxia,Boolean,Symptom
+Autopsy shows birth defect (if applicable),Categorical,Symptom
+Place of birth,Boolean,Method
+Folic acid details (peri-conceptional),Boolean,Cause
+H/O serious maternal illness,Boolean,Cause
+H/O radiation exposure (x-ray),Boolean,Cause
+H/O substance abuse,Boolean,Cause
+Assisted conception IVF/ART,Boolean,Cause
+History of anomalies in previous pregnancies,Boolean,Cause
+No. of previous abortion,Categorical,Cause
+Birth defects,Boolean,Cause
+White Blood cell count (thousand per microliter),Decimal,Symptom
+Blood test result,Categorical,Symptom
+Symptom 1,Boolean,Symptom
+Symptom 2,Boolean,Symptom
+Symptom 3,Boolean,Symptom
+Symptom 4,Boolean,Symptom
+Symptom 5,Boolean,Symptom
+Genetic Disorder,Categorical,Target
+Disorder Subclass,Categorical,Target

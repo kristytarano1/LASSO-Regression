@@ -1,10 +1,6 @@
 ---
 title: "LASSO Regression"
-<<<<<<< HEAD
 author: "Kayla Hayes, HJ Kim, Kristy Tarano, Andrew Melara-Suazo"
-=======
-author: "Kayla Hayes, HJ Kim, Kristy Tarano, Andrew Melara-Suazo"
->>>>>>> 91a15975feaec0a7f2efe4ad2cb4a7f2bdfa6de1
 date: '`r Sys.Date()`'
 format:
   html:
@@ -23,17 +19,9 @@ editor:
 
 ## Introduction
 
-### What is "mehtod"?
+### What is LASSO Regression?
 
-This is an introduction to LASSO regression, which is a non-parametric
-estimator that estimates the conditional expectation of two variables
-which is random. The goal of a kernel regression is to discover the
-non-linear relationship between two random variables. To discover the
-non-linear relationship, kernel estimator or kernel smoothing is the
-main method to estimate the curve for non-parametric statistics. In
-kernel estimator, weight function is known as kernel function
-[@efr2008]. Cite this paper [@bro2014principal]. The GEE [@wang2014].
-The PCA [@daffertshofer2004pca]
+LASSO, or Least Absolute Shrinkage and Selection Operator, regression is a popular linear regression technique used to address common modeling issues like overfitting,  overestimation, and multicollinearity (Ranstam & Cook, 2018). Datasets containing a large number of features can lead to complex models, and this can affect the reliability of the model outcomes. LASSO regression’s power as a regularization method is exhibited best when applied to datasets demonstrating these problems (Abdulhafedh, A., 2022). The Mean Squared Error (MSE) is commonly used to measure the accuracy of any given regression model. When utilizing LASSO regression, any coefficients with very high values can be reduced all the way down to zero by the introduction of a bias. LASSO adds a penalization parameter, also referred to as the L1 Penalty, which determines how much shrinkage will occur to the model’s coefficients (Freijeiro-González, Febrero-Bande, & González-Manteiga, 2022). The L1 Penalty is determined by  λ  times the slope of a fitted line where the sum of squared residuals is added to the penalty to increase the bias and offset the variance of the model. This leads to a lower MSE as a result and allows for the benefits of feature selection. By shrinking some of the coefficients, through penalization, it thus filters which variables will be considered and included in the final model (Fonti & Belitser, 2017). 
 
 This is my work and I want to add more work...
 
@@ -68,7 +56,7 @@ $$
 
 ### Data and Visualization
 
-A study was conducted to determine how...
+The dataset chosen for this study relates to Genomes and Genetics. It was originally used in a Machine Learning contest for contestants to design models with the ability to predict genetic disorders and their related disorder subclasses. The dataset consists of two parts: training data and test data. It is broken down into 45 variables that are applied across both the training data and the testing data. The tables below show the breakdown of the variables and the target data.
 
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
@@ -82,7 +70,16 @@ library(dslabs)
 
 ```{r, warning=FALSE, echo=TRUE}
 # Load Data
-kable(head(murders))
+
+Target <- read.csv("Target - Sheet1.csv", header = TRUE)
+Variables <- read.csv("Variables - Sheet1.csv", header = TRUE)
+
+# Print the first few rows of the data frame to verify it loaded correctly
+
+
+kable(head(Target))
+
+kable(head(Variables))
 
 ggplot1 = murders %>% ggplot(mapping = aes(x=population/10^6, y=total)) 
 
