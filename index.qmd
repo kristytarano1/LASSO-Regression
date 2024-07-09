@@ -66,6 +66,7 @@ library(knitr)
 library(ggthemes)
 library(ggrepel)
 library(dslabs)
+library(dplyr)
 ```
 
 ```{r, warning=FALSE, echo=TRUE}
@@ -81,18 +82,18 @@ kable(head(Target))
 
 kable(head(Variables))
 
-ggplot1 = murders %>% ggplot(mapping = aes(x=population/10^6, y=total)) 
+# ggplot1 = murders %>% ggplot(mapping = aes(x=population/10^6, y=total)) 
 
-  ggplot1 + geom_point(aes(col=region), size = 4) +
-  geom_text_repel(aes(label=abb)) +
-  scale_x_log10() +
-  scale_y_log10() +
-  geom_smooth(formula = "y~x", method=lm,se = F)+
-  xlab("Populations in millions (log10 scale)") + 
-  ylab("Total number of murders (log10 scale)") +
-  ggtitle("US Gun Murders in 2010") +
-  scale_color_discrete(name = "Region")+
-      theme_bw()
+#  ggplot1 + geom_point(aes(col=region), size = 4) +
+#  geom_text_repel(aes(label=abb)) +
+#  scale_x_log10() +
+#  scale_y_log10() +
+#  geom_smooth(formula = "y~x", method=lm,se = F)+
+#  xlab("Populations in millions (log10 scale)") + 
+#  ylab("Total number of murders (log10 scale)") +
+#  ggtitle("US Gun Murders in 2010") +
+#  scale_color_discrete(name = "Region")+
+#      theme_bw()
   
 
 ```
