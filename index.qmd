@@ -70,32 +70,27 @@ library(dplyr)
 library(DT)
 ```
 
+### Variables
+
 ```{r, warning=FALSE, echo=TRUE}
 # Load Data
 
-Target <- read.csv("Target - Sheet1.csv", header = TRUE)
 Variables <- read.csv("Variables - Sheet1.csv", header = TRUE)
 
 # Print the tables showing Variables and breakdown of Target data
 
 datatable(Variables)
 
+```
+
+### Target Data
+
+```{r, warning=FALSE, echo=TRUE}
+
+Target <- read.csv("Target - Sheet1.csv", header = TRUE)
+
 datatable(Target)
 
-
-
-# ggplot1 = murders %>% ggplot(mapping = aes(x=population/10^6, y=total)) 
-
-#  ggplot1 + geom_point(aes(col=region), size = 4) +
-#  geom_text_repel(aes(label=abb)) +
-#  scale_x_log10() +
-#  scale_y_log10() +
-#  geom_smooth(formula = "y~x", method=lm,se = F)+
-#  xlab("Populations in millions (log10 scale)") + 
-#  ylab("Total number of murders (log10 scale)") +
-#  ggtitle("US Gun Murders in 2010") +
-#  scale_color_discrete(name = "Region")+
-#      theme_bw()
   
 
 ```

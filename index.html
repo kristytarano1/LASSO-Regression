@@ -5685,67 +5685,61 @@ y_i = \beta_0 + \beta_1 X_1 +\varepsilon_i
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+</section>
+</section>
+<section id="variables" class="level2">
+<h2 class="anchored" data-anchor-id="variables">Variables</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load Data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Target <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;Target - Sheet1.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>Variables <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;Variables - Sheet1.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the tables showing Variables and breakdown of Target data</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">datatable</span>(Variables)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Variables <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;Variables - Sheet1.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the tables showing Variables and breakdown of Target data</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">datatable</span>(Variables)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-2c27927e0b9f2b866f03" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-2c27927e0b9f2b866f03">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45"],["Patient ID","Patient Age","Genes in mother's side","Inherited from father","Maternal gene","Paternal gene","Blood cell count (mcL)","Patient First Name","Family Name","Father's name","Mother's age","Father's age","Institute Name","Location of Institute","Status","Respiratory Rate (breaths/min)","Heart Rate (rates/min","Test 1","Test 2","Test 3","Test 4","Test 5","Parental consent","Follow-up","Gender","Birth asphyxia","Autopsy shows birth defect (if applicable)","Place of birth","Folic acid details (peri-conceptional)","H/O serious maternal illness","H/O radiation exposure (x-ray)","H/O substance abuse","Assisted conception IVF/ART","History of anomalies in previous pregnancies","No. of previous abortion","Birth defects","White Blood cell count (thousand per microliter)","Blood test result","Symptom 1","Symptom 2","Symptom 3","Symptom 4","Symptom 5","Genetic Disorder","Disorder Subclass"],["String","Integer","Boolean","Boolean","Boolean","Boolean","Decimal","String","String","String","Integer","Integer","String","String","Boolean","Boolean","Boolean","Boolean","Boolean","Boolean","Boolean","Boolean","Boolean","Boolean","Categorical","Boolean","Categorical","Boolean","Boolean","Boolean","Boolean","Boolean","Boolean","Boolean","Categorical","Boolean","Decimal","Categorical","Boolean","Boolean","Boolean","Boolean","Boolean","Categorical","Categorical"],["ID","Age","Cause","Cause","Cause","Cause","Count","Name","Name","Name","Age","Age","Name","Address","Life","Symptom","Symptom","Not identified","Not identified","Not identified","Not identified","Not identified","Consent","Depth of research","Gender","Symptom","Symptom","Method","Cause","Cause","Cause","Cause","Cause","Cause","Cause","Cause","Symptom","Symptom","Symptom","Symptom","Symptom","Symptom","Symptom","Target","Target"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Item<\/th>\n      <th>Type<\/th>\n      <th>Description<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Item","targets":1},{"name":"Type","targets":2},{"name":"Description","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-792d918490ef5db73cd2" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-792d918490ef5db73cd2">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45"],["Patient ID","Patient Age","Genes in mother's side","Inherited from father","Maternal gene","Paternal gene","Blood cell count (mcL)","Patient First Name","Family Name","Father's name","Mother's age","Father's age","Institute Name","Location of Institute","Status","Respiratory Rate (breaths/min)","Heart Rate (rates/min","Test 1","Test 2","Test 3","Test 4","Test 5","Parental consent","Follow-up","Gender","Birth asphyxia","Autopsy shows birth defect (if applicable)","Place of birth","Folic acid details (peri-conceptional)","H/O serious maternal illness","H/O radiation exposure (x-ray)","H/O substance abuse","Assisted conception IVF/ART","History of anomalies in previous pregnancies","No. of previous abortion","Birth defects","White Blood cell count (thousand per microliter)","Blood test result","Symptom 1","Symptom 2","Symptom 3","Symptom 4","Symptom 5","Genetic Disorder","Disorder Subclass"],["String","Integer","Boolean","Boolean","Boolean","Boolean","Decimal","String","String","String","Integer","Integer","String","String","Boolean","Boolean","Boolean","Boolean","Boolean","Boolean","Boolean","Boolean","Boolean","Boolean","Categorical","Boolean","Categorical","Boolean","Boolean","Boolean","Boolean","Boolean","Boolean","Boolean","Categorical","Boolean","Decimal","Categorical","Boolean","Boolean","Boolean","Boolean","Boolean","Categorical","Categorical"],["ID","Age","Cause","Cause","Cause","Cause","Count","Name","Name","Name","Age","Age","Name","Address","Life","Symptom","Symptom","Not identified","Not identified","Not identified","Not identified","Not identified","Consent","Depth of research","Gender","Symptom","Symptom","Method","Cause","Cause","Cause","Cause","Cause","Cause","Cause","Cause","Symptom","Symptom","Symptom","Symptom","Symptom","Symptom","Symptom","Target","Target"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Item<\/th>\n      <th>Type<\/th>\n      <th>Description<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Item","targets":1},{"name":"Type","targets":2},{"name":"Description","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">datatable</span>(Target)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-1552e0cc623818c07e3f" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-1552e0cc623818c07e3f">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11"],["Alzheimer's","Cancer","Cystic fibrosis","Diabetes","Hemochromatosis","Leber's hereditary optic neuropathy","Leigh syndrome","Mitochondrial myopathy","Tay-Sachs","Vacant","Total"],[null,null,null,null,null,587,4683,3971,null,961,10202],[133,91,null,1653,null,null,null,null,null,194,2071],[null,null,3145,null,1228,null,null,null,2556,735,7664],[19,6,303,164,127,61,477,434,277,278,2146],[152,97,3448,1817,1355,648,5160,4405,2833,2168,22083]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Subclass.Disease<\/th>\n      <th>Mitochondrial.genetic.inheritance.disorders<\/th>\n      <th>Multifactorial.genetic.inheritance.disorders<\/th>\n      <th>Single.gene.inheritance.diseases<\/th>\n      <th>X.Vacant.<\/th>\n      <th>Total<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Subclass.Disease","targets":1},{"name":"Mitochondrial.genetic.inheritance.disorders","targets":2},{"name":"Multifactorial.genetic.inheritance.disorders","targets":3},{"name":"Single.gene.inheritance.diseases","targets":4},{"name":"X.Vacant.","targets":5},{"name":"Total","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
-</div>
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot1 = murders %&gt;% ggplot(mapping = aes(x=population/10^6, y=total)) </span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#  ggplot1 + geom_point(aes(col=region), size = 4) +</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#  geom_text_repel(aes(label=abb)) +</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#  scale_x_log10() +</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#  scale_y_log10() +</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#  geom_smooth(formula = &quot;y~x&quot;, method=lm,se = F)+</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#  xlab(&quot;Populations in millions (log10 scale)&quot;) + </span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#  ylab(&quot;Total number of murders (log10 scale)&quot;) +</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#  ggtitle(&quot;US Gun Murders in 2010&quot;) +</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#  scale_color_discrete(name = &quot;Region&quot;)+</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#      theme_bw()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </section>
+<section id="target-data" class="level2">
+<h2 class="anchored" data-anchor-id="target-data">Target Data</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Target <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;Target - Sheet1.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">datatable</span>(Target)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-bc08d2d8cbfef4394f0c" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-bc08d2d8cbfef4394f0c">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11"],["Alzheimer's","Cancer","Cystic fibrosis","Diabetes","Hemochromatosis","Leber's hereditary optic neuropathy","Leigh syndrome","Mitochondrial myopathy","Tay-Sachs","Vacant","Total"],[null,null,null,null,null,587,4683,3971,null,961,10202],[133,91,null,1653,null,null,null,null,null,194,2071],[null,null,3145,null,1228,null,null,null,2556,735,7664],[19,6,303,164,127,61,477,434,277,278,2146],[152,97,3448,1817,1355,648,5160,4405,2833,2168,22083]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Subclass.Disease<\/th>\n      <th>Mitochondrial.genetic.inheritance.disorders<\/th>\n      <th>Multifactorial.genetic.inheritance.disorders<\/th>\n      <th>Single.gene.inheritance.diseases<\/th>\n      <th>X.Vacant.<\/th>\n      <th>Total<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Subclass.Disease","targets":1},{"name":"Mitochondrial.genetic.inheritance.disorders","targets":2},{"name":"Multifactorial.genetic.inheritance.disorders","targets":3},{"name":"Single.gene.inheritance.diseases","targets":4},{"name":"X.Vacant.","targets":5},{"name":"Total","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
 <section id="statistical-modeling" class="level3">
 <h3 class="anchored" data-anchor-id="statistical-modeling">Statistical Modeling</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plyr)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#getwd()</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#setwd(&quot;E:/UWF/STA6257&quot;)</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;train_genetics.xlsx&quot;</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plyr)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#getwd()</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#setwd(&quot;E:/UWF/STA6257&quot;)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;train_genetics.xlsx&quot;</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 22083    45</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 22,083
@@ -5798,8 +5792,8 @@ $ `Disorder Subclass`                                &lt;chr&gt; &quot;Leber&#39
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df[, <span class="sc">!</span><span class="fu">names</span>(df) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Patient Id&quot;</span>, <span class="st">&quot;Patient First Name&quot;</span>, <span class="st">&quot;Family Name&quot;</span>, <span class="st">&quot;Father&#39;s name&quot;</span>, <span class="st">&quot;Institute Name&quot;</span>, <span class="st">&quot;Location of Institute&quot;</span>, <span class="st">&quot;Test 1&quot;</span>, <span class="st">&quot;Test 2&quot;</span>, <span class="st">&quot;Test 3&quot;</span>, <span class="st">&quot;Test 4&quot;</span>, <span class="st">&quot;Test 5&quot;</span>, <span class="st">&quot;Symptom 1&quot;</span>, <span class="st">&quot;Symptom 2&quot;</span>, <span class="st">&quot;Symptom 3&quot;</span>, <span class="st">&quot;Symptom 4&quot;</span>, <span class="st">&quot;Symptom 5&quot;</span>, <span class="st">&quot;Parental consent&quot;</span>, <span class="st">&quot;Follow-up&quot;</span>, <span class="st">&quot;H/O radiation exposure (x-ray)&quot;</span>, <span class="st">&quot;H/O substance abuse&quot;</span>, <span class="st">&quot;Birth asphyxia&quot;</span>)]</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df[, <span class="sc">!</span><span class="fu">names</span>(df) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Patient Id&quot;</span>, <span class="st">&quot;Patient First Name&quot;</span>, <span class="st">&quot;Family Name&quot;</span>, <span class="st">&quot;Father&#39;s name&quot;</span>, <span class="st">&quot;Institute Name&quot;</span>, <span class="st">&quot;Location of Institute&quot;</span>, <span class="st">&quot;Test 1&quot;</span>, <span class="st">&quot;Test 2&quot;</span>, <span class="st">&quot;Test 3&quot;</span>, <span class="st">&quot;Test 4&quot;</span>, <span class="st">&quot;Test 5&quot;</span>, <span class="st">&quot;Symptom 1&quot;</span>, <span class="st">&quot;Symptom 2&quot;</span>, <span class="st">&quot;Symptom 3&quot;</span>, <span class="st">&quot;Symptom 4&quot;</span>, <span class="st">&quot;Symptom 5&quot;</span>, <span class="st">&quot;Parental consent&quot;</span>, <span class="st">&quot;Follow-up&quot;</span>, <span class="st">&quot;H/O radiation exposure (x-ray)&quot;</span>, <span class="st">&quot;H/O substance abuse&quot;</span>, <span class="st">&quot;Birth asphyxia&quot;</span>)]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 22,083
@@ -5831,13 +5825,13 @@ $ `Disorder Subclass`                                &lt;chr&gt; &quot;Leber&#39
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Missing value check</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;naniar&quot;)</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(naniar)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;VIM&quot;)</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>naniar<span class="sc">::</span><span class="fu">miss_var_summary</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Missing value check</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;naniar&quot;)</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(naniar)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;VIM&quot;)</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>naniar<span class="sc">::</span><span class="fu">miss_var_summary</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 24 × 3
@@ -5857,7 +5851,7 @@ $ `Disorder Subclass`                                &lt;chr&gt; &quot;Leber&#39
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>VIM<span class="sc">::</span><span class="fu">aggr</span>(df,<span class="at">prop=</span><span class="cn">FALSE</span>,<span class="at">numbers=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>VIM<span class="sc">::</span><span class="fu">aggr</span>(df,<span class="at">prop=</span><span class="cn">FALSE</span>,<span class="at">numbers=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -5868,67 +5862,67 @@ $ `Disorder Subclass`                                &lt;chr&gt; &quot;Leber&#39
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#df &lt;- df %&gt;% filter(!is.na(df$`Mother&#39;s age`))</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#df &lt;- df %&gt;% filter(!is.na(df$`Father&#39;s age`))</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#VIM::aggr(df,prop=FALSE,numbers=TRUE)</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#naniar::miss_var_summary(df)</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(df)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#df &lt;- df %&gt;% filter(!is.na(df$`Mother&#39;s age`))</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#df &lt;- df %&gt;% filter(!is.na(df$`Father&#39;s age`))</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#VIM::aggr(df,prop=FALSE,numbers=TRUE)</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#naniar::miss_var_summary(df)</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(df)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 7176   24</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(dt))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(dt))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.data.table</span>(dt) <span class="co"># to see if data.table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.data.table</span>(dt) <span class="co"># to see if data.table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">as.data.table</span>(dt)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Categorical data into numerical data</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;mltools&quot;)</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mltools)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to convert categorical variables to numeric</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>convert_to_numeric <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.numeric</span>(x)) <span class="fu">return</span>(x)</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  factor_x <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(x)</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>(factor_x)</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="co"># List of columns to convert (excluding already numeric columns and ID)</span></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>columns_to_convert <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Status&quot;</span>, <span class="st">&quot;Respiratory Rate (breaths/min)&quot;</span>, <span class="st">&quot;Heart Rate (rates/min&quot;</span>, <span class="st">&quot;Autopsy shows birth defect (if applicable)&quot;</span>, <span class="st">&quot;Place of birth&quot;</span>, <span class="st">&quot;Assisted conception IVF/ART&quot;</span>, <span class="st">&quot;History of anomalies in previous pregnancies&quot;</span>,<span class="st">&quot;Birth defects&quot;</span>, <span class="st">&quot;Blood test result&quot;</span>, <span class="st">&quot;Genetic Disorder&quot;</span>, <span class="st">&quot;Disorder Subclass&quot;</span>, <span class="st">&quot;Gender&quot;</span>)</span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert specified columns to numeric</span></span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>dt[, (columns_to_convert) <span class="sc">:</span><span class="er">=</span> <span class="fu">lapply</span>(.SD, convert_to_numeric), .SDcols <span class="ot">=</span> columns_to_convert]</span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Special handling for &quot;Respiratory Rate&quot; and &quot;Heart Rate&quot; columns</span></span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>dt[, <span class="st">`</span><span class="at">Respiratory Rate (breaths/min)</span><span class="st">`</span> <span class="sc">:</span><span class="er">=</span> <span class="fu">as.numeric</span>(<span class="fu">sub</span>(<span class="st">&quot;Normal </span><span class="sc">\\</span><span class="st">(30-60</span><span class="sc">\\</span><span class="st">)&quot;</span>, <span class="st">&quot;Tachycardia&quot;</span>, <span class="st">`</span><span class="at">Respiratory Rate (breaths/min)</span><span class="st">`</span>))]</span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>dt[, <span class="st">`</span><span class="at">Heart Rate (rates/min</span><span class="st">`</span> <span class="sc">:</span><span class="er">=</span> <span class="fu">as.numeric</span>(<span class="fu">sub</span>(<span class="st">&quot;Normal&quot;</span>, <span class="st">&quot;Tachycardia&quot;</span>, <span class="st">`</span><span class="at">Heart Rate (rates/min</span><span class="st">`</span>))]</span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>dt[, <span class="st">`</span><span class="at">Gender</span><span class="st">`</span> <span class="sc">:</span><span class="er">=</span> <span class="fu">as.numeric</span>(<span class="fu">sub</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">`</span><span class="at">Gender</span><span class="st">`</span>))]</span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Yes/No columns to 1/0</span></span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>yes_no_columns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Genes in mother&#39;s side&quot;</span>, <span class="st">&quot;Inherited from father&quot;</span>, <span class="st">&quot;Maternal gene&quot;</span>, <span class="st">&quot;Paternal gene&quot;</span>, <span class="st">&quot;Folic acid details (peri-conceptional)&quot;</span>, <span class="st">&quot;H/O serious maternal illness&quot;</span>)</span>
-<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>dt[, (yes_no_columns) <span class="sc">:</span><span class="er">=</span> <span class="fu">lapply</span>(.SD, <span class="cf">function</span>(x) <span class="fu">as.numeric</span>(x <span class="sc">==</span> <span class="st">&quot;Yes&quot;</span>)), .SDcols <span class="ot">=</span> yes_no_columns]</span>
-<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>VIM<span class="sc">::</span><span class="fu">aggr</span>(dt,<span class="at">prop=</span><span class="cn">FALSE</span>,<span class="at">numbers=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">as.data.table</span>(dt)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Categorical data into numerical data</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;mltools&quot;)</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mltools)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to convert categorical variables to numeric</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>convert_to_numeric <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.numeric</span>(x)) <span class="fu">return</span>(x)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  factor_x <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(x)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>(factor_x)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="co"># List of columns to convert (excluding already numeric columns and ID)</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>columns_to_convert <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Status&quot;</span>, <span class="st">&quot;Respiratory Rate (breaths/min)&quot;</span>, <span class="st">&quot;Heart Rate (rates/min&quot;</span>, <span class="st">&quot;Autopsy shows birth defect (if applicable)&quot;</span>, <span class="st">&quot;Place of birth&quot;</span>, <span class="st">&quot;Assisted conception IVF/ART&quot;</span>, <span class="st">&quot;History of anomalies in previous pregnancies&quot;</span>,<span class="st">&quot;Birth defects&quot;</span>, <span class="st">&quot;Blood test result&quot;</span>, <span class="st">&quot;Genetic Disorder&quot;</span>, <span class="st">&quot;Disorder Subclass&quot;</span>, <span class="st">&quot;Gender&quot;</span>)</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert specified columns to numeric</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>dt[, (columns_to_convert) <span class="sc">:</span><span class="er">=</span> <span class="fu">lapply</span>(.SD, convert_to_numeric), .SDcols <span class="ot">=</span> columns_to_convert]</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Special handling for &quot;Respiratory Rate&quot; and &quot;Heart Rate&quot; columns</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>dt[, <span class="st">`</span><span class="at">Respiratory Rate (breaths/min)</span><span class="st">`</span> <span class="sc">:</span><span class="er">=</span> <span class="fu">as.numeric</span>(<span class="fu">sub</span>(<span class="st">&quot;Normal </span><span class="sc">\\</span><span class="st">(30-60</span><span class="sc">\\</span><span class="st">)&quot;</span>, <span class="st">&quot;Tachycardia&quot;</span>, <span class="st">`</span><span class="at">Respiratory Rate (breaths/min)</span><span class="st">`</span>))]</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>dt[, <span class="st">`</span><span class="at">Heart Rate (rates/min</span><span class="st">`</span> <span class="sc">:</span><span class="er">=</span> <span class="fu">as.numeric</span>(<span class="fu">sub</span>(<span class="st">&quot;Normal&quot;</span>, <span class="st">&quot;Tachycardia&quot;</span>, <span class="st">`</span><span class="at">Heart Rate (rates/min</span><span class="st">`</span>))]</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>dt[, <span class="st">`</span><span class="at">Gender</span><span class="st">`</span> <span class="sc">:</span><span class="er">=</span> <span class="fu">as.numeric</span>(<span class="fu">sub</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">`</span><span class="at">Gender</span><span class="st">`</span>))]</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Yes/No columns to 1/0</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>yes_no_columns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Genes in mother&#39;s side&quot;</span>, <span class="st">&quot;Inherited from father&quot;</span>, <span class="st">&quot;Maternal gene&quot;</span>, <span class="st">&quot;Paternal gene&quot;</span>, <span class="st">&quot;Folic acid details (peri-conceptional)&quot;</span>, <span class="st">&quot;H/O serious maternal illness&quot;</span>)</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>dt[, (yes_no_columns) <span class="sc">:</span><span class="er">=</span> <span class="fu">lapply</span>(.SD, <span class="cf">function</span>(x) <span class="fu">as.numeric</span>(x <span class="sc">==</span> <span class="st">&quot;Yes&quot;</span>)), .SDcols <span class="ot">=</span> yes_no_columns]</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>VIM<span class="sc">::</span><span class="fu">aggr</span>(dt,<span class="at">prop=</span><span class="cn">FALSE</span>,<span class="at">numbers=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -5939,7 +5933,7 @@ $ `Disorder Subclass`                                &lt;chr&gt; &quot;Leber&#39
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>dt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>dt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Patient Age Genes in mother&#39;s side Inherited from father Maternal gene
@@ -6053,19 +6047,19 @@ $ `Disorder Subclass`                                &lt;chr&gt; &quot;Leber&#39
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># EDA</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># graphs</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> key, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="sc">+</span></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># EDA</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># graphs</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> key, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="sc">+</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -6076,14 +6070,14 @@ $ `Disorder Subclass`                                &lt;chr&gt; &quot;Leber&#39
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creating correlation matrix</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>corr_mat <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">cor</span>(dt),<span class="dv">2</span>)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>melted_corr_mat <span class="ot">&lt;-</span> <span class="fu">melt</span>(corr_mat)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plotting the correlation heatmap</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> melted_corr_mat, <span class="fu">aes</span>(<span class="at">x=</span>Var1, <span class="at">y=</span>Var2,</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">fill=</span>value)) <span class="sc">+</span> </span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creating correlation matrix</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>corr_mat <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">cor</span>(dt),<span class="dv">2</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>melted_corr_mat <span class="ot">&lt;-</span> <span class="fu">melt</span>(corr_mat)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plotting the correlation heatmap</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> melted_corr_mat, <span class="fu">aes</span>(<span class="at">x=</span>Var1, <span class="at">y=</span>Var2,</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">fill=</span>value)) <span class="sc">+</span> </span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
