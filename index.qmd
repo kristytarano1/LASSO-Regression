@@ -97,7 +97,7 @@ datatable(Target)
 
 ### Statistical Modeling
 
-```{r}
+```{r, warning=FALSE, echo=TRUE}
 
 library(tidyverse)
 library(plyr)
@@ -169,8 +169,20 @@ dt[, (yes_no_columns) := lapply(.SD, function(x) as.numeric(x == "Yes")), .SDcol
 
 VIM::aggr(dt,prop=FALSE,numbers=TRUE)
 
+```
+
+### Converted Data Table
+
+```{r, warning=FALSE, echo=TRUE}
 
 datatable(dt)
+
+```
+
+
+### Histograms of Converted Data
+
+```{r, warning=FALSE, echo=TRUE}
 
 # EDA
 # graphs
@@ -180,6 +192,13 @@ dt %>%
   ggplot(aes(value)) +
   facet_wrap(~ key, scales = "free") +
   geom_histogram()
+
+```
+
+
+### Correlation Heatmap
+
+```{r, warning=FALSE, echo=TRUE}
 
 # creating correlation matrix
 corr_mat <- round(cor(dt),2)
@@ -193,7 +212,7 @@ ggplot(data = melted_corr_mat, aes(x=Var1, y=Var2,
 
 ```
 
-### Conclusion
+## Conclusion
 
 ## References
 
