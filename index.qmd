@@ -105,7 +105,7 @@ kable(head(Variables))
 library(tidyverse)
 library(plyr)
 library(readxl)
-getwd()
+#getwd()
 #setwd("E:/UWF/STA6257")
 
 df <- read_excel("train_genetics.xlsx")
@@ -201,144 +201,7 @@ ggplot(data = melted_corr_mat, aes(x=Var1, y=Var2,
 
 ## References
 
-@article{claussnitzer2020,
-  title={A brief history of human disease genetics},
-  author={Claussnitzer, Melina and Cho, Judy H and Collins, Rory and Cox, Nancy J and Dermitzakis, Emmanouil T and Hurles, Matthew E and Kathiresan, Sekar and Kenny, Eimear E and Lindgren, Cecilia M and MacArthur, Daniel G and others},
-  journal={Nature},
-  volume={577},
-  number={7789},
-  pages={179--189},
-  year={2020},
-  publisher={Nature Publishing Group UK London}
-}
+<div id="refs"></div>
 
-
-
-@article{liu2023,
-  title={Clinical diagnosis of genetic disorders at both single-nucleotide and chromosomal levels based on BGISEQ-500 platform},
-  author={Liu, Yanqiu and Mao, Liangwei and Huang, Hui and Li, Wei and Man, Jianfen and Zhang, Wenqian and Wang, Lina and Li, Long and Sun, Yan and Zhai, Teng and others},
-  journal={Human Genome Variation},
-  volume={10},
-  number={1},
-  pages={15},
-  year={2023},
-  publisher={Nature Publishing Group UK London}
-}
-
-@article{tamburrano2020,
-  title={Evaluation and cost estimation of laboratory test overuse in 43 commonly ordered parameters through a Computerized Clinical Decision Support System (CCDSS) in a large university hospital},
-  author={Tamburrano, Andrea and Vallone, Doriana and Carrozza, Cinzia and Urbani, Andrea and Sanguinetti, Maurizio and Nicolotti, Nicola and Cambieri, Andrea and Laurenti, Patrizia},
-  journal={PLoS One},
-  volume={15},
-  number={8},
-  pages={e0237159},
-  year={2020},
-  publisher={Public Library of Science San Francisco, CA USA}
-}
-
-@article{raza2022,
-  title={Predicting genetic disorder and types of disorder using chain classifier approach},
-  author={Raza, Ali and Rustam, Furqan and Siddiqui, Hafeez Ur Rehman and Diez, Isabel de la Torre and Garcia-Zapirain, Bego{\~n}a and Lee, Ernesto and Ashraf, Imran},
-  journal={Genes},
-  volume={14},
-  number={1},
-  pages={71},
-  year={2022},
-  publisher={MDPI}
-}
-
-@article{liu2019,
-  title={Prediction of gene expression patterns with generalized linear regression model},
-  author={Liu, Shuai and Lu, Mengye and Li, Hanshuang and Zuo, Yongchun},
-  journal={Frontiers in Genetics},
-  volume={10},
-  pages={120},
-  year={2019},
-  publisher={Frontiers Media SA}
-}
-
-@article{meysami2023,
-  title={Utilizing logistic regression to compare risk factors in disease modeling with imbalanced data: a case study in vitamin D and cancer incidence},
-  author={Meysami, Mohammad and Kumar, Vijay and Pugh, McKayah and Lowery, Samuel Thomas and Sur, Shantanu and Mondal, Sumona and Greene, James M},
-  journal={Frontiers in Oncology},
-  volume={13},
-  pages={1227842},
-  year={2023},
-  publisher={Frontiers Media SA}
-}
-
-@inproceedings{rusyana2021,
-  title={The lasso binary logistic regression method for selecting variables that affect the recovery of Covid-19 patients in China},
-  author={Rusyana, A and Notodiputro, KA and Sartono, B},
-  booktitle={Journal of Physics: Conference Series},
-  volume={1882},
-  number={1},
-  pages={012035},
-  year={2021},
-  organization={IOP Publishing}
-}
-
-@article{ranstam2018,
-  title={LASSO regression},
-  author={Ranstam, Jonas and Cook, Jonathan A},
-  journal={Journal of British Surgery},
-  volume={105},
-  number={10},
-  pages={1348--1348},
-  year={2018},
-  publisher={Oxford University Press}
-}
-
-@article{abdulhafedh2022,
-  title={Modeling vehicle crash frequency when multicollinearity exists in vehicle crash data: ridge regression versus ordinary least squares linear regression},
-  author={Abdulhafedh, Azad},
-  journal={Open Access Library Journal},
-  volume={9},
-  number={6},
-  pages={1--17},
-  year={2022},
-  publisher={Scientific Research Publishing}
-}
-
-@article{hodson2022,
-  title={Root mean square error (RMSE) or mean absolute error (MAE): When to use them or not},
-  author={Hodson, Timothy O},
-  journal={Geoscientific Model Development Discussions},
-  volume={2022},
-  pages={1--10},
-  year={2022},
-  publisher={G{\"o}ttingen, Germany}
-}
-
-@article{freijeiro2022,
-  title={A critical review of LASSO and its derivatives for variable selection under dependence among covariates},
-  author={Freijeiro-Gonz{\'a}lez, Laura and Febrero-Bande, Manuel and Gonz{\'a}lez-Manteiga, Wenceslao},
-  journal={International Statistical Review},
-  volume={90},
-  number={1},
-  pages={118--145},
-  year={2022},
-  publisher={Wiley Online Library}
-}
-
-@article{greenwood2020,
-  title={A comparison of penalised regression methods for informing the selection of predictive markers},
-  author={Greenwood, Christopher J and Youssef, George J and Letcher, Primrose and Macdonald, Jacqui A and Hagg, Lauryn J and Sanson, Ann and Mcintosh, Jenn and Hutchinson, Delyse M and Toumbourou, John W and Fuller-Tyszkiewicz, Matthew and others},
-  journal={PloS one},
-  volume={15},
-  number={11},
-  pages={e0242730},
-  year={2020},
-  publisher={Public Library of Science San Francisco, CA USA}
-}
-
-@article{guha2024,
-  title={Feature Selection Using Lasso Regression Enhances Deep Learning Model Performance For Diagnosis Of Lung Cancer from Transcriptomic Data},
-  author={GUHA, SOUVIK},
-  journal={bioRxiv},
-  pages={2024--05},
-  year={2024},
-  publisher={Cold Spring Harbor Laboratory}
-}
 
 

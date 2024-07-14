@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kayla Hayes, HJ Kim, Kristy Tarano, Andrew Melara-Suazo">
-<meta name="dcterms.date" content="2024-07-13">
+<meta name="dcterms.date" content="2024-07-14">
 
 <title>LASSO Regression</title>
 <style>
@@ -3152,7 +3152,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 13, 2024</p>
+      <p class="date">July 14, 2024</p>
     </div>
   </div>
   
@@ -3168,8 +3168,8 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <section id="what-is-lasso-regression" class="level3">
 <h3 class="anchored" data-anchor-id="what-is-lasso-regression">What is LASSO Regression?</h3>
-<p>Genetic disorders and the diagnoses of problematic and infrequent disorders have shaped our existence for thousands of years <span class="citation" data-cites="claussnitzer2020">(<a href="#ref-claussnitzer2020" role="doc-biblioref"><strong>claussnitzer2020?</strong></a>)</span>. The time commitment to diagnose each case correctly and efficiently is a daunting one to say the least <span class="citation" data-cites="liu2023">(<a href="#ref-liu2023" role="doc-biblioref"><strong>liu2023?</strong></a>)</span>. Medical instruments are expensive and the inefficiencies that exist with overuse of computerized decision making forecasting is apparent in labs and hospitals, in this case a large university hospital <span class="citation" data-cites="tamburrano2020">(<a href="#ref-tamburrano2020" role="doc-biblioref"><strong>tamburrano2020?</strong></a>)</span>. Studies such as the aforementioned put the research community at a crossroads since these computerized diagnosing systems are intended to be a great asset and tool for medical professionals to utilize during their diagnosing procedures. With that being said, machine learning and the diagnosing of genetic disorders has made great strides in the genomics world with an increasing variety of machine learning models being applied to predictive modeling <span class="citation" data-cites="raza2022">(<a href="#ref-raza2022" role="doc-biblioref"><strong>raza2022?</strong></a>)</span>. Linear models have shown to be an ample way of predicting disorder outcomes through the targeting of what is often the root cause, gene expression and the patterns that can be extrapolated <span class="citation" data-cites="liu2019">(<a href="#ref-liu2019" role="doc-biblioref"><strong>liu2019?</strong></a>)</span>. Aside from the work of linear models, many of these disorders have been linked to varying degrees of gene expression and mutation, proper organizing of these categories through means such as a classification method provides insight <span class="citation" data-cites="raza2022">(<a href="#ref-raza2022" role="doc-biblioref"><strong>raza2022?</strong></a>)</span>. Moreover, the classification technique, Logistic regression, is capable of predicting various outcome variables related to cancer status and the probability of such an event occurring due to demographic data <span class="citation" data-cites="meysami2023">(<a href="#ref-meysami2023" role="doc-biblioref"><strong>meysami2023?</strong></a>)</span>. Choosing to optimize a technique like Logistic regression with a regularization method such as LASSO regression indicates a simplified overall model and an increase in selected independent variables for a predictive outcome<span class="citation" data-cites="rusyana2021">(<a href="#ref-rusyana2021" role="doc-biblioref"><strong>rusyana2021?</strong></a>)</span>. <br></p>
-<p>LASSO, or Least Absolute Shrinkage and Selection Operator regression is a robust technique used to address common modeling issues like overfitting, overestimation, and multicollinearity <span class="citation" data-cites="ranstam2018">(<a href="#ref-ranstam2018" role="doc-biblioref"><strong>ranstam2018?</strong></a>)</span>. LASSO regression’s power as a regularization method is exhibited best when applied to datasets demonstrating these problems such as this study on multicollinearity in vehicle crash data <span class="citation" data-cites="abdulhafedh2022">(<a href="#ref-abdulhafedh2022" role="doc-biblioref"><strong>abdulhafedh2022?</strong></a>)</span>. The Mean Squared Error is commonly used to measure the accuracy of any given regression model and when utilizing LASSO regression, any coefficients with very high values can be reduced all the way down to zero by the introduction of a bias <span class="citation" data-cites="hodson2022">(<a href="#ref-hodson2022" role="doc-biblioref"><strong>hodson2022?</strong></a>)</span>. LASSO adds a penalization parameter, also referred to as the L1 Penalty, which determines how much shrinkage will occur to the model’s coefficients <span class="citation" data-cites="freijeiro2022">(<a href="#ref-freijeiro2022" role="doc-biblioref"><strong>freijeiro2022?</strong></a>)</span>. The L1 Penalty is determined by λ multiplied by the absolute value of the slope of a fitted line where the sum of squared residuals is added to the penalty to increase the bias and offset the variance of the model which has shown to be useful for developing predictive models <span class="citation" data-cites="greenwood2020">(<a href="#ref-greenwood2020" role="doc-biblioref"><strong>greenwood2020?</strong></a>)</span>. The use of LASSO regression to perform feature selection has shown to be productive when coupled with a machine learning model to reach a high level of accuracy and precision when predicting gene patterns relating to cancer diagnosis <span class="citation" data-cites="guha2024">(<a href="#ref-guha2024" role="doc-biblioref"><strong>guha2024?</strong></a>)</span>. <br></p>
+<p>Genetic disorders and the diagnoses of problematic and infrequent disorders have shaped our existence for thousands of years <span class="citation" data-cites="claussnitzer2020">(<a href="#ref-claussnitzer2020" role="doc-biblioref">Claussnitzer et al. 2020</a>)</span>. The time commitment to diagnose each case correctly and efficiently is a daunting one to say the least <span class="citation" data-cites="liu2023">(<a href="#ref-liu2023" role="doc-biblioref">Y. Liu et al. 2023</a>)</span>. Medical instruments are expensive and the inefficiencies that exist with overuse of computerized decision making forecasting is apparent in labs and hospitals, in this case a large university hospital <span class="citation" data-cites="tamburrano2020">(<a href="#ref-tamburrano2020" role="doc-biblioref">Tamburrano et al. 2020</a>)</span>. Studies such as the aforementioned put the research community at a crossroads since these computerized diagnosing systems are intended to be a great asset and tool for medical professionals to utilize during their diagnosing procedures. With that being said, machine learning and the diagnosing of genetic disorders has made great strides in the genomics world with an increasing variety of machine learning models being applied to predictive modeling <span class="citation" data-cites="raza2022">(<a href="#ref-raza2022" role="doc-biblioref">Raza et al. 2022</a>)</span>. Linear models have shown to be an ample way of predicting disorder outcomes through the targeting of what is often the root cause, gene expression and the patterns that can be extrapolated <span class="citation" data-cites="liu2019">(<a href="#ref-liu2019" role="doc-biblioref">S. Liu et al. 2019</a>)</span>. Aside from the work of linear models, many of these disorders have been linked to varying degrees of gene expression and mutation, proper organizing of these categories through means such as a classification method provides insight <span class="citation" data-cites="raza2022">(<a href="#ref-raza2022" role="doc-biblioref">Raza et al. 2022</a>)</span>. Moreover, the classification technique, Logistic regression, is capable of predicting various outcome variables related to cancer status and the probability of such an event occurring due to demographic data <span class="citation" data-cites="meysami2023">(<a href="#ref-meysami2023" role="doc-biblioref">Meysami et al. 2023</a>)</span>. Choosing to optimize a technique like Logistic regression with a regularization method such as LASSO regression indicates a simplified overall model and an increase in selected independent variables for a predictive outcome<span class="citation" data-cites="rusyana2021">(<a href="#ref-rusyana2021" role="doc-biblioref">Rusyana, Notodiputro, and Sartono 2021</a>)</span>. <br></p>
+<p>LASSO, or Least Absolute Shrinkage and Selection Operator regression is a robust technique used to address common modeling issues like overfitting, overestimation, and multicollinearity <span class="citation" data-cites="ranstam2018">(<a href="#ref-ranstam2018" role="doc-biblioref">Ranstam and Cook 2018</a>)</span>. LASSO regression’s power as a regularization method is exhibited best when applied to datasets demonstrating these problems such as this study on multicollinearity in vehicle crash data <span class="citation" data-cites="abdulhafedh2022">(<a href="#ref-abdulhafedh2022" role="doc-biblioref">Abdulhafedh 2022</a>)</span>. The Mean Squared Error is commonly used to measure the accuracy of any given regression model and when utilizing LASSO regression, any coefficients with very high values can be reduced all the way down to zero by the introduction of a bias <span class="citation" data-cites="hodson2022">(<a href="#ref-hodson2022" role="doc-biblioref">Hodson 2022</a>)</span>. LASSO adds a penalization parameter, also referred to as the L1 Penalty, which determines how much shrinkage will occur to the model’s coefficients <span class="citation" data-cites="freijeiro2022">(<a href="#ref-freijeiro2022" role="doc-biblioref">Freijeiro-González, Febrero-Bande, and González-Manteiga 2022</a>)</span>. The L1 Penalty is determined by λ multiplied by the absolute value of the slope of a fitted line where the sum of squared residuals is added to the penalty to increase the bias and offset the variance of the model which has shown to be useful for developing predictive models <span class="citation" data-cites="greenwood2020">(<a href="#ref-greenwood2020" role="doc-biblioref">Greenwood et al. 2020</a>)</span>. The use of LASSO regression to perform feature selection has shown to be productive when coupled with a machine learning model to reach a high level of accuracy and precision when predicting gene patterns relating to cancer diagnosis <span class="citation" data-cites="guha2024">(<a href="#ref-guha2024" role="doc-biblioref">GUHA 2024</a>)</span>. <br></p>
 </section>
 <section id="related-work" class="level3">
 <h3 class="anchored" data-anchor-id="related-work">Related work</h3>
@@ -3178,7 +3178,7 @@ window.Quarto = {
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
-<p>The common non-parametric regression model is <span class="math inline">\(Y_i = m(X_i) + \varepsilon_i\)</span>, where <span class="math inline">\(Y_i\)</span> can be defined as the sum of the regression function value <span class="math inline">\(m(x)\)</span> for <span class="math inline">\(X_i\)</span>. Here <span class="math inline">\(m(x)\)</span> is unknown and <span class="math inline">\(\varepsilon_i\)</span> some errors. With the help of this definition, we can create the estimation for local averaging i.e. <span class="math inline">\(m(x)\)</span> can be estimated with the product of <span class="math inline">\(Y_i\)</span> average and <span class="math inline">\(X_i\)</span> is near to <span class="math inline">\(x\)</span>. In other words, this means that we are discovering the line through the data points with the help of surrounding data points. The estimation formula is printed below <span class="citation" data-cites="R-base">(<a href="#ref-R-base" role="doc-biblioref">R Core Team 2019</a>)</span>:</p>
+<p>The common non-parametric regression model is <span class="math inline">\(Y_i = m(X_i) + \varepsilon_i\)</span>, where <span class="math inline">\(Y_i\)</span> can be defined as the sum of the regression function value <span class="math inline">\(m(x)\)</span> for <span class="math inline">\(X_i\)</span>. Here <span class="math inline">\(m(x)\)</span> is unknown and <span class="math inline">\(\varepsilon_i\)</span> some errors. With the help of this definition, we can create the estimation for local averaging i.e. <span class="math inline">\(m(x)\)</span> can be estimated with the product of <span class="math inline">\(Y_i\)</span> average and <span class="math inline">\(X_i\)</span> is near to <span class="math inline">\(x\)</span>. In other words, this means that we are discovering the line through the data points with the help of surrounding data points. The estimation formula is printed below <span class="citation" data-cites="R-base">(<a href="#ref-R-base" role="doc-biblioref"><strong>R-base?</strong></a>)</span>:</p>
 <p><span class="math display">\[
 M_n(x) = \sum_{i=1}^{n} W_n (X_i) Y_i  \tag{1}
 \]</span> <span class="math inline">\(W_n(x)\)</span> is the sum of weights that belongs to all real numbers. Weights are positive numbers and small if <span class="math inline">\(X_i\)</span> is far from <span class="math inline">\(x\)</span>.</p>
@@ -3361,24 +3361,18 @@ y_i = \beta_0 + \beta_1 X_1 +\varepsilon_i
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plyr)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] &quot;/home/kch48/LASSO Regression Repo/STA6257_Project_LASSO-Regression&quot;</code></pre>
-</div>
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#setwd(&quot;E:/UWF/STA6257&quot;)</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;train_genetics.xlsx&quot;</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#getwd()</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#setwd(&quot;E:/UWF/STA6257&quot;)</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;train_genetics.xlsx&quot;</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 22083    45</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 22,083
@@ -3431,8 +3425,8 @@ $ `Disorder Subclass`                                &lt;chr&gt; &quot;Leber&#39
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df[, <span class="sc">!</span><span class="fu">names</span>(df) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Patient Id&quot;</span>, <span class="st">&quot;Patient First Name&quot;</span>, <span class="st">&quot;Family Name&quot;</span>, <span class="st">&quot;Father&#39;s name&quot;</span>, <span class="st">&quot;Institute Name&quot;</span>, <span class="st">&quot;Location of Institute&quot;</span>, <span class="st">&quot;Test 1&quot;</span>, <span class="st">&quot;Test 2&quot;</span>, <span class="st">&quot;Test 3&quot;</span>, <span class="st">&quot;Test 4&quot;</span>, <span class="st">&quot;Test 5&quot;</span>, <span class="st">&quot;Symptom 1&quot;</span>, <span class="st">&quot;Symptom 2&quot;</span>, <span class="st">&quot;Symptom 3&quot;</span>, <span class="st">&quot;Symptom 4&quot;</span>, <span class="st">&quot;Symptom 5&quot;</span>, <span class="st">&quot;Parental consent&quot;</span>, <span class="st">&quot;Follow-up&quot;</span>, <span class="st">&quot;H/O radiation exposure (x-ray)&quot;</span>, <span class="st">&quot;H/O substance abuse&quot;</span>, <span class="st">&quot;Birth asphyxia&quot;</span>)]</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df[, <span class="sc">!</span><span class="fu">names</span>(df) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Patient Id&quot;</span>, <span class="st">&quot;Patient First Name&quot;</span>, <span class="st">&quot;Family Name&quot;</span>, <span class="st">&quot;Father&#39;s name&quot;</span>, <span class="st">&quot;Institute Name&quot;</span>, <span class="st">&quot;Location of Institute&quot;</span>, <span class="st">&quot;Test 1&quot;</span>, <span class="st">&quot;Test 2&quot;</span>, <span class="st">&quot;Test 3&quot;</span>, <span class="st">&quot;Test 4&quot;</span>, <span class="st">&quot;Test 5&quot;</span>, <span class="st">&quot;Symptom 1&quot;</span>, <span class="st">&quot;Symptom 2&quot;</span>, <span class="st">&quot;Symptom 3&quot;</span>, <span class="st">&quot;Symptom 4&quot;</span>, <span class="st">&quot;Symptom 5&quot;</span>, <span class="st">&quot;Parental consent&quot;</span>, <span class="st">&quot;Follow-up&quot;</span>, <span class="st">&quot;H/O radiation exposure (x-ray)&quot;</span>, <span class="st">&quot;H/O substance abuse&quot;</span>, <span class="st">&quot;Birth asphyxia&quot;</span>)]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 22,083
@@ -3464,13 +3458,13 @@ $ `Disorder Subclass`                                &lt;chr&gt; &quot;Leber&#39
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Missing value check</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;naniar&quot;)</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(naniar)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;VIM&quot;)</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>naniar<span class="sc">::</span><span class="fu">miss_var_summary</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Missing value check</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;naniar&quot;)</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(naniar)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;VIM&quot;)</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>naniar<span class="sc">::</span><span class="fu">miss_var_summary</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 24 × 3
@@ -3490,7 +3484,7 @@ $ `Disorder Subclass`                                &lt;chr&gt; &quot;Leber&#39
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>VIM<span class="sc">::</span><span class="fu">aggr</span>(df,<span class="at">prop=</span><span class="cn">FALSE</span>,<span class="at">numbers=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>VIM<span class="sc">::</span><span class="fu">aggr</span>(df,<span class="at">prop=</span><span class="cn">FALSE</span>,<span class="at">numbers=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -3501,67 +3495,67 @@ $ `Disorder Subclass`                                &lt;chr&gt; &quot;Leber&#39
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#df &lt;- df %&gt;% filter(!is.na(df$`Mother&#39;s age`))</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#df &lt;- df %&gt;% filter(!is.na(df$`Father&#39;s age`))</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#VIM::aggr(df,prop=FALSE,numbers=TRUE)</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#naniar::miss_var_summary(df)</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(df)</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#df &lt;- df %&gt;% filter(!is.na(df$`Mother&#39;s age`))</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#df &lt;- df %&gt;% filter(!is.na(df$`Father&#39;s age`))</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#VIM::aggr(df,prop=FALSE,numbers=TRUE)</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#naniar::miss_var_summary(df)</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(df)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 7176   24</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(dt))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(dt))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.data.table</span>(dt) <span class="co"># to see if data.table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.data.table</span>(dt) <span class="co"># to see if data.table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">as.data.table</span>(dt)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Categorical data into numerical data</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;mltools&quot;)</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mltools)</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to convert categorical variables to numeric</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>convert_to_numeric <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.numeric</span>(x)) <span class="fu">return</span>(x)</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  factor_x <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(x)</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>(factor_x)</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="co"># List of columns to convert (excluding already numeric columns and ID)</span></span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>columns_to_convert <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Status&quot;</span>, <span class="st">&quot;Respiratory Rate (breaths/min)&quot;</span>, <span class="st">&quot;Heart Rate (rates/min&quot;</span>, <span class="st">&quot;Autopsy shows birth defect (if applicable)&quot;</span>, <span class="st">&quot;Place of birth&quot;</span>, <span class="st">&quot;Assisted conception IVF/ART&quot;</span>, <span class="st">&quot;History of anomalies in previous pregnancies&quot;</span>,<span class="st">&quot;Birth defects&quot;</span>, <span class="st">&quot;Blood test result&quot;</span>, <span class="st">&quot;Genetic Disorder&quot;</span>, <span class="st">&quot;Disorder Subclass&quot;</span>, <span class="st">&quot;Gender&quot;</span>)</span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert specified columns to numeric</span></span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>dt[, (columns_to_convert) <span class="sc">:</span><span class="er">=</span> <span class="fu">lapply</span>(.SD, convert_to_numeric), .SDcols <span class="ot">=</span> columns_to_convert]</span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Special handling for &quot;Respiratory Rate&quot; and &quot;Heart Rate&quot; columns</span></span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>dt[, <span class="st">`</span><span class="at">Respiratory Rate (breaths/min)</span><span class="st">`</span> <span class="sc">:</span><span class="er">=</span> <span class="fu">as.numeric</span>(<span class="fu">sub</span>(<span class="st">&quot;Normal </span><span class="sc">\\</span><span class="st">(30-60</span><span class="sc">\\</span><span class="st">)&quot;</span>, <span class="st">&quot;Tachycardia&quot;</span>, <span class="st">`</span><span class="at">Respiratory Rate (breaths/min)</span><span class="st">`</span>))]</span>
-<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>dt[, <span class="st">`</span><span class="at">Heart Rate (rates/min</span><span class="st">`</span> <span class="sc">:</span><span class="er">=</span> <span class="fu">as.numeric</span>(<span class="fu">sub</span>(<span class="st">&quot;Normal&quot;</span>, <span class="st">&quot;Tachycardia&quot;</span>, <span class="st">`</span><span class="at">Heart Rate (rates/min</span><span class="st">`</span>))]</span>
-<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>dt[, <span class="st">`</span><span class="at">Gender</span><span class="st">`</span> <span class="sc">:</span><span class="er">=</span> <span class="fu">as.numeric</span>(<span class="fu">sub</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">`</span><span class="at">Gender</span><span class="st">`</span>))]</span>
-<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Yes/No columns to 1/0</span></span>
-<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>yes_no_columns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Genes in mother&#39;s side&quot;</span>, <span class="st">&quot;Inherited from father&quot;</span>, <span class="st">&quot;Maternal gene&quot;</span>, <span class="st">&quot;Paternal gene&quot;</span>, <span class="st">&quot;Folic acid details (peri-conceptional)&quot;</span>, <span class="st">&quot;H/O serious maternal illness&quot;</span>)</span>
-<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>dt[, (yes_no_columns) <span class="sc">:</span><span class="er">=</span> <span class="fu">lapply</span>(.SD, <span class="cf">function</span>(x) <span class="fu">as.numeric</span>(x <span class="sc">==</span> <span class="st">&quot;Yes&quot;</span>)), .SDcols <span class="ot">=</span> yes_no_columns]</span>
-<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>VIM<span class="sc">::</span><span class="fu">aggr</span>(dt,<span class="at">prop=</span><span class="cn">FALSE</span>,<span class="at">numbers=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">as.data.table</span>(dt)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Categorical data into numerical data</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;mltools&quot;)</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mltools)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to convert categorical variables to numeric</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>convert_to_numeric <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.numeric</span>(x)) <span class="fu">return</span>(x)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  factor_x <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(x)</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>(factor_x)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="co"># List of columns to convert (excluding already numeric columns and ID)</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>columns_to_convert <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Status&quot;</span>, <span class="st">&quot;Respiratory Rate (breaths/min)&quot;</span>, <span class="st">&quot;Heart Rate (rates/min&quot;</span>, <span class="st">&quot;Autopsy shows birth defect (if applicable)&quot;</span>, <span class="st">&quot;Place of birth&quot;</span>, <span class="st">&quot;Assisted conception IVF/ART&quot;</span>, <span class="st">&quot;History of anomalies in previous pregnancies&quot;</span>,<span class="st">&quot;Birth defects&quot;</span>, <span class="st">&quot;Blood test result&quot;</span>, <span class="st">&quot;Genetic Disorder&quot;</span>, <span class="st">&quot;Disorder Subclass&quot;</span>, <span class="st">&quot;Gender&quot;</span>)</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert specified columns to numeric</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>dt[, (columns_to_convert) <span class="sc">:</span><span class="er">=</span> <span class="fu">lapply</span>(.SD, convert_to_numeric), .SDcols <span class="ot">=</span> columns_to_convert]</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Special handling for &quot;Respiratory Rate&quot; and &quot;Heart Rate&quot; columns</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>dt[, <span class="st">`</span><span class="at">Respiratory Rate (breaths/min)</span><span class="st">`</span> <span class="sc">:</span><span class="er">=</span> <span class="fu">as.numeric</span>(<span class="fu">sub</span>(<span class="st">&quot;Normal </span><span class="sc">\\</span><span class="st">(30-60</span><span class="sc">\\</span><span class="st">)&quot;</span>, <span class="st">&quot;Tachycardia&quot;</span>, <span class="st">`</span><span class="at">Respiratory Rate (breaths/min)</span><span class="st">`</span>))]</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>dt[, <span class="st">`</span><span class="at">Heart Rate (rates/min</span><span class="st">`</span> <span class="sc">:</span><span class="er">=</span> <span class="fu">as.numeric</span>(<span class="fu">sub</span>(<span class="st">&quot;Normal&quot;</span>, <span class="st">&quot;Tachycardia&quot;</span>, <span class="st">`</span><span class="at">Heart Rate (rates/min</span><span class="st">`</span>))]</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>dt[, <span class="st">`</span><span class="at">Gender</span><span class="st">`</span> <span class="sc">:</span><span class="er">=</span> <span class="fu">as.numeric</span>(<span class="fu">sub</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">`</span><span class="at">Gender</span><span class="st">`</span>))]</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Yes/No columns to 1/0</span></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>yes_no_columns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Genes in mother&#39;s side&quot;</span>, <span class="st">&quot;Inherited from father&quot;</span>, <span class="st">&quot;Maternal gene&quot;</span>, <span class="st">&quot;Paternal gene&quot;</span>, <span class="st">&quot;Folic acid details (peri-conceptional)&quot;</span>, <span class="st">&quot;H/O serious maternal illness&quot;</span>)</span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>dt[, (yes_no_columns) <span class="sc">:</span><span class="er">=</span> <span class="fu">lapply</span>(.SD, <span class="cf">function</span>(x) <span class="fu">as.numeric</span>(x <span class="sc">==</span> <span class="st">&quot;Yes&quot;</span>)), .SDcols <span class="ot">=</span> yes_no_columns]</span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>VIM<span class="sc">::</span><span class="fu">aggr</span>(dt,<span class="at">prop=</span><span class="cn">FALSE</span>,<span class="at">numbers=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -3572,7 +3566,7 @@ $ `Disorder Subclass`                                &lt;chr&gt; &quot;Leber&#39
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>dt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>dt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Patient Age Genes in mother&#39;s side Inherited from father Maternal gene
@@ -3686,19 +3680,19 @@ $ `Disorder Subclass`                                &lt;chr&gt; &quot;Leber&#39
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># EDA</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># graphs</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> key, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="sc">+</span></span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># EDA</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># graphs</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>dt <span class="sc">%&gt;%</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value)) <span class="sc">+</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> key, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="sc">+</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -3709,14 +3703,14 @@ $ `Disorder Subclass`                                &lt;chr&gt; &quot;Leber&#39
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creating correlation matrix</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>corr_mat <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">cor</span>(dt),<span class="dv">2</span>)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>melted_corr_mat <span class="ot">&lt;-</span> <span class="fu">melt</span>(corr_mat)</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plotting the correlation heatmap</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> melted_corr_mat, <span class="fu">aes</span>(<span class="at">x=</span>Var1, <span class="at">y=</span>Var2,</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">fill=</span>value)) <span class="sc">+</span> </span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creating correlation matrix</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>corr_mat <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">cor</span>(dt),<span class="dv">2</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>melted_corr_mat <span class="ot">&lt;-</span> <span class="fu">melt</span>(corr_mat)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plotting the correlation heatmap</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> melted_corr_mat, <span class="fu">aes</span>(<span class="at">x=</span>Var1, <span class="at">y=</span>Var2,</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">fill=</span>value)) <span class="sc">+</span> </span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -3733,27 +3727,50 @@ $ `Disorder Subclass`                                &lt;chr&gt; &quot;Leber&#39
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
-<p><span class="citation" data-cites="article">(<a href="#ref-article" role="doc-biblioref"><strong>article?</strong></a>)</span>{claussnitzer2020, title={A brief history of human disease genetics}, author={Claussnitzer, Melina and Cho, Judy H and Collins, Rory and Cox, Nancy J and Dermitzakis, Emmanouil T and Hurles, Matthew E and Kathiresan, Sekar and Kenny, Eimear E and Lindgren, Cecilia M and MacArthur, Daniel G and others}, journal={Nature}, volume={577}, number={7789}, pages={179–189}, year={2020}, publisher={Nature Publishing Group UK London} }</p>
-<p><span class="citation" data-cites="article">(<a href="#ref-article" role="doc-biblioref"><strong>article?</strong></a>)</span>{liu2023, title={Clinical diagnosis of genetic disorders at both single-nucleotide and chromosomal levels based on BGISEQ-500 platform}, author={Liu, Yanqiu and Mao, Liangwei and Huang, Hui and Li, Wei and Man, Jianfen and Zhang, Wenqian and Wang, Lina and Li, Long and Sun, Yan and Zhai, Teng and others}, journal={Human Genome Variation}, volume={10}, number={1}, pages={15}, year={2023}, publisher={Nature Publishing Group UK London} }</p>
-<p><span class="citation" data-cites="article">(<a href="#ref-article" role="doc-biblioref"><strong>article?</strong></a>)</span>{tamburrano2020, title={Evaluation and cost estimation of laboratory test overuse in 43 commonly ordered parameters through a Computerized Clinical Decision Support System (CCDSS) in a large university hospital}, author={Tamburrano, Andrea and Vallone, Doriana and Carrozza, Cinzia and Urbani, Andrea and Sanguinetti, Maurizio and Nicolotti, Nicola and Cambieri, Andrea and Laurenti, Patrizia}, journal={PLoS One}, volume={15}, number={8}, pages={e0237159}, year={2020}, publisher={Public Library of Science San Francisco, CA USA} }</p>
-<p><span class="citation" data-cites="article">(<a href="#ref-article" role="doc-biblioref"><strong>article?</strong></a>)</span>{raza2022, title={Predicting genetic disorder and types of disorder using chain classifier approach}, author={Raza, Ali and Rustam, Furqan and Siddiqui, Hafeez Ur Rehman and Diez, Isabel de la Torre and Garcia-Zapirain, Bego{~n}a and Lee, Ernesto and Ashraf, Imran}, journal={Genes}, volume={14}, number={1}, pages={71}, year={2022}, publisher={MDPI} }</p>
-<p><span class="citation" data-cites="article">(<a href="#ref-article" role="doc-biblioref"><strong>article?</strong></a>)</span>{liu2019, title={Prediction of gene expression patterns with generalized linear regression model}, author={Liu, Shuai and Lu, Mengye and Li, Hanshuang and Zuo, Yongchun}, journal={Frontiers in Genetics}, volume={10}, pages={120}, year={2019}, publisher={Frontiers Media SA} }</p>
-<p><span class="citation" data-cites="article">(<a href="#ref-article" role="doc-biblioref"><strong>article?</strong></a>)</span>{meysami2023, title={Utilizing logistic regression to compare risk factors in disease modeling with imbalanced data: a case study in vitamin D and cancer incidence}, author={Meysami, Mohammad and Kumar, Vijay and Pugh, McKayah and Lowery, Samuel Thomas and Sur, Shantanu and Mondal, Sumona and Greene, James M}, journal={Frontiers in Oncology}, volume={13}, pages={1227842}, year={2023}, publisher={Frontiers Media SA} }</p>
-<p><span class="citation" data-cites="inproceedings">(<a href="#ref-inproceedings" role="doc-biblioref"><strong>inproceedings?</strong></a>)</span>{rusyana2021, title={The lasso binary logistic regression method for selecting variables that affect the recovery of Covid-19 patients in China}, author={Rusyana, A and Notodiputro, KA and Sartono, B}, booktitle={Journal of Physics: Conference Series}, volume={1882}, number={1}, pages={012035}, year={2021}, organization={IOP Publishing} }</p>
-<p><span class="citation" data-cites="article">(<a href="#ref-article" role="doc-biblioref"><strong>article?</strong></a>)</span>{ranstam2018, title={LASSO regression}, author={Ranstam, Jonas and Cook, Jonathan A}, journal={Journal of British Surgery}, volume={105}, number={10}, pages={1348–1348}, year={2018}, publisher={Oxford University Press} }</p>
-<p><span class="citation" data-cites="article">(<a href="#ref-article" role="doc-biblioref"><strong>article?</strong></a>)</span>{abdulhafedh2022, title={Modeling vehicle crash frequency when multicollinearity exists in vehicle crash data: ridge regression versus ordinary least squares linear regression}, author={Abdulhafedh, Azad}, journal={Open Access Library Journal}, volume={9}, number={6}, pages={1–17}, year={2022}, publisher={Scientific Research Publishing} }</p>
-<p><span class="citation" data-cites="article">(<a href="#ref-article" role="doc-biblioref"><strong>article?</strong></a>)</span>{hodson2022, title={Root mean square error (RMSE) or mean absolute error (MAE): When to use them or not}, author={Hodson, Timothy O}, journal={Geoscientific Model Development Discussions}, volume={2022}, pages={1–10}, year={2022}, publisher={G{&quot;o}ttingen, Germany} }</p>
-<p><span class="citation" data-cites="article">(<a href="#ref-article" role="doc-biblioref"><strong>article?</strong></a>)</span>{freijeiro2022, title={A critical review of LASSO and its derivatives for variable selection under dependence among covariates}, author={Freijeiro-Gonz{&#39;a}lez, Laura and Febrero-Bande, Manuel and Gonz{&#39;a}lez-Manteiga, Wenceslao}, journal={International Statistical Review}, volume={90}, number={1}, pages={118–145}, year={2022}, publisher={Wiley Online Library} }</p>
-<p><span class="citation" data-cites="article">(<a href="#ref-article" role="doc-biblioref"><strong>article?</strong></a>)</span>{greenwood2020, title={A comparison of penalised regression methods for informing the selection of predictive markers}, author={Greenwood, Christopher J and Youssef, George J and Letcher, Primrose and Macdonald, Jacqui A and Hagg, Lauryn J and Sanson, Ann and Mcintosh, Jenn and Hutchinson, Delyse M and Toumbourou, John W and Fuller-Tyszkiewicz, Matthew and others}, journal={PloS one}, volume={15}, number={11}, pages={e0242730}, year={2020}, publisher={Public Library of Science San Francisco, CA USA} }</p>
-<p><span class="citation" data-cites="article">(<a href="#ref-article" role="doc-biblioref"><strong>article?</strong></a>)</span>{guha2024, title={Feature Selection Using Lasso Regression Enhances Deep Learning Model Performance For Diagnosis Of Lung Cancer from Transcriptomic Data}, author={GUHA, SOUVIK}, journal={bioRxiv}, pages={2024–05}, year={2024}, publisher={Cold Spring Harbor Laboratory} }</p>
-
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-abdulhafedh2022" class="csl-entry" role="listitem">
+Abdulhafedh, Azad. 2022. <span>“Modeling Vehicle Crash Frequency When Multicollinearity Exists in Vehicle Crash Data: Ridge Regression Versus Ordinary Least Squares Linear Regression.”</span> <em>Open Access Library Journal</em> 9 (6): 1–17.
+</div>
+<div id="ref-claussnitzer2020" class="csl-entry" role="listitem">
+Claussnitzer, Melina, Judy H Cho, Rory Collins, Nancy J Cox, Emmanouil T Dermitzakis, Matthew E Hurles, Sekar Kathiresan, et al. 2020. <span>“A Brief History of Human Disease Genetics.”</span> <em>Nature</em> 577 (7789): 179–89.
+</div>
+<div id="ref-freijeiro2022" class="csl-entry" role="listitem">
+Freijeiro-González, Laura, Manuel Febrero-Bande, and Wenceslao González-Manteiga. 2022. <span>“A Critical Review of LASSO and Its Derivatives for Variable Selection Under Dependence Among Covariates.”</span> <em>International Statistical Review</em> 90 (1): 118–45.
+</div>
+<div id="ref-greenwood2020" class="csl-entry" role="listitem">
+Greenwood, Christopher J, George J Youssef, Primrose Letcher, Jacqui A Macdonald, Lauryn J Hagg, Ann Sanson, Jenn Mcintosh, et al. 2020. <span>“A Comparison of Penalised Regression Methods for Informing the Selection of Predictive Markers.”</span> <em>PloS One</em> 15 (11): e0242730.
+</div>
+<div id="ref-guha2024" class="csl-entry" role="listitem">
+GUHA, SOUVIK. 2024. <span>“Feature Selection Using Lasso Regression Enhances Deep Learning Model Performance for Diagnosis of Lung Cancer from Transcriptomic Data.”</span> <em>bioRxiv</em>, 2024–05.
+</div>
+<div id="ref-hodson2022" class="csl-entry" role="listitem">
+Hodson, Timothy O. 2022. <span>“Root Mean Square Error (RMSE) or Mean Absolute Error (MAE): When to Use Them or Not.”</span> <em>Geoscientific Model Development Discussions</em> 2022: 1–10.
+</div>
+<div id="ref-liu2019" class="csl-entry" role="listitem">
+Liu, Shuai, Mengye Lu, Hanshuang Li, and Yongchun Zuo. 2019. <span>“Prediction of Gene Expression Patterns with Generalized Linear Regression Model.”</span> <em>Frontiers in Genetics</em> 10: 120.
+</div>
+<div id="ref-liu2023" class="csl-entry" role="listitem">
+Liu, Yanqiu, Liangwei Mao, Hui Huang, Wei Li, Jianfen Man, Wenqian Zhang, Lina Wang, et al. 2023. <span>“Clinical Diagnosis of Genetic Disorders at Both Single-Nucleotide and Chromosomal Levels Based on BGISEQ-500 Platform.”</span> <em>Human Genome Variation</em> 10 (1): 15.
+</div>
+<div id="ref-meysami2023" class="csl-entry" role="listitem">
+Meysami, Mohammad, Vijay Kumar, McKayah Pugh, Samuel Thomas Lowery, Shantanu Sur, Sumona Mondal, and James M Greene. 2023. <span>“Utilizing Logistic Regression to Compare Risk Factors in Disease Modeling with Imbalanced Data: A Case Study in Vitamin d and Cancer Incidence.”</span> <em>Frontiers in Oncology</em> 13: 1227842.
+</div>
+<div id="ref-ranstam2018" class="csl-entry" role="listitem">
+Ranstam, Jonas, and Jonathan A Cook. 2018. <span>“LASSO Regression.”</span> <em>Journal of British Surgery</em> 105 (10): 1348–48.
+</div>
+<div id="ref-raza2022" class="csl-entry" role="listitem">
+Raza, Ali, Furqan Rustam, Hafeez Ur Rehman Siddiqui, Isabel de la Torre Diez, Begoña Garcia-Zapirain, Ernesto Lee, and Imran Ashraf. 2022. <span>“Predicting Genetic Disorder and Types of Disorder Using Chain Classifier Approach.”</span> <em>Genes</em> 14 (1): 71.
+</div>
+<div id="ref-rusyana2021" class="csl-entry" role="listitem">
+Rusyana, A, KA Notodiputro, and B Sartono. 2021. <span>“The Lasso Binary Logistic Regression Method for Selecting Variables That Affect the Recovery of Covid-19 Patients in China.”</span> In <em>Journal of Physics: Conference Series</em>, 1882:012035. 1. IOP Publishing.
+</div>
+<div id="ref-tamburrano2020" class="csl-entry" role="listitem">
+Tamburrano, Andrea, Doriana Vallone, Cinzia Carrozza, Andrea Urbani, Maurizio Sanguinetti, Nicola Nicolotti, Andrea Cambieri, and Patrizia Laurenti. 2020. <span>“Evaluation and Cost Estimation of Laboratory Test Overuse in 43 Commonly Ordered Parameters Through a Computerized Clinical Decision Support System (CCDSS) in a Large University Hospital.”</span> <em>PLoS One</em> 15 (8): e0237159.
+</div>
+</div>
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-R-base" class="csl-entry" role="listitem">
-R Core Team. 2019. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org">https://www.R-project.org</a>.
-</div>
-</div></section></div></main>
+</main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
