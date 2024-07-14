@@ -77,7 +77,7 @@ library(DT)
 
 Variables <- read.csv("Variables - Sheet1.csv", header = TRUE)
 
-# Print the tables showing Variables and breakdown of Target data
+# Display the Variables table
 
 datatable(Variables)
 
@@ -89,9 +89,9 @@ datatable(Variables)
 
 Target <- read.csv("Target - Sheet1.csv", header = TRUE)
 
-datatable(Target)
+# Display the Target Data table
 
-  
+datatable(Target)
 
 ```
 
@@ -102,6 +102,16 @@ datatable(Target)
 library(tidyverse)
 library(plyr)
 library(readxl)
+#install.packages("naniar")
+library(naniar) 
+#install.packages("VIM")
+library(data.table)
+#install.packages("mltools")
+library(mltools)
+library(ggplot2)
+library(reshape2)
+library(tidyr)
+library(purrr)
 #getwd()
 #setwd("E:/UWF/STA6257")
 
@@ -112,10 +122,6 @@ df <- df[, !names(df) %in% c("Patient Id", "Patient First Name", "Family Name", 
 glimpse(df)
 
 # Missing value check
-#install.packages("naniar")
-library(naniar)
-#install.packages("VIM")
-library(data.table)
 
 naniar::miss_var_summary(df)
 
@@ -134,9 +140,6 @@ is.data.table(dt) # to see if data.table
 dt <- as.data.table(dt)
 
 # Convert Categorical data into numerical data
-#install.packages("mltools")
-library(mltools)
-library(data.table)
 
 # Function to convert categorical variables to numeric
 convert_to_numeric <- function(x) {
@@ -166,15 +169,11 @@ dt[, (yes_no_columns) := lapply(.SD, function(x) as.numeric(x == "Yes")), .SDcol
 
 VIM::aggr(dt,prop=FALSE,numbers=TRUE)
 
-dt
+
+datatable(dt)
 
 # EDA
 # graphs
-library(ggplot2)
-library(reshape2)
-library(tidyr)
-library(purrr)
-
 
 dt %>%
   gather() %>% 
