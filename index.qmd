@@ -22,10 +22,8 @@ editor:
 ### What is LASSO Regression?
 
   Genetic disorders and the diagnoses of problematic and infrequent disorders have shaped our existence for thousands of years [@claussnitzer2020].  The time commitment to diagnose each case correctly and efficiently is a daunting one to say the least [@liu2023]. Medical instruments are expensive and the inefficiencies that exist with overuse of computerized decision making forecasting is apparent in labs and hospitals, in this case a large university hospital [@tamburrano2020]. Studies such as the aforementioned put the research community at a crossroads since these computerized diagnosing systems are intended to be a great asset and tool for medical professionals to utilize during their diagnosing procedures. With that being said, machine learning and the diagnosing of genetic disorders has made great strides in the genomics world with an increasing variety of machine learning models being applied to predictive modeling [@raza2022]. Linear models have shown to be an ample way of predicting disorder outcomes through the targeting of what is often the root cause, gene expression and the patterns that can be extrapolated  [@liu2019]. Aside from the work of linear models, many of these disorders have been linked to varying degrees of gene expression and mutation, proper organizing of these categories through means such as a classification method provides insight  [@raza2022]. Moreover, the classification technique, Logistic regression, is capable of predicting various outcome variables related to cancer status and the probability of such an event occurring due to demographic data [@meysami2023]. Choosing to optimize a technique like Logistic regression with a regularization method such as LASSO regression indicates a simplified overall model and an increase in selected independent variables for a predictive outcome[@rusyana2021]. <br>
+  
   LASSO, or Least Absolute Shrinkage and Selection Operator regression is a robust technique used to address common modeling issues like overfitting, overestimation, and multicollinearity [@ranstam2018]. LASSO regression’s power as a regularization method is exhibited best when applied to datasets demonstrating these problems such as this study on multicollinearity in vehicle crash data [@abdulhafedh2022].  The Mean Squared Error is commonly used to measure the accuracy of any given regression model and when utilizing LASSO regression, any coefficients with very high values can be reduced all the way down to zero by the introduction of a bias [@hodson2022].  LASSO adds a penalization parameter, also referred to as the L1 Penalty, which determines how much shrinkage will occur to the model’s coefficients [@freijeiro2022].  The L1 Penalty is determined by λ multiplied by the absolute value of the slope of a fitted line where the sum of squared residuals is added to the penalty to increase the bias and offset the variance of the model which has shown to be useful for developing predictive models [@greenwood2020]. The use of LASSO regression to perform feature selection has shown to be productive when coupled with a machine learning model to reach a high level of accuracy and precision when predicting gene patterns relating to cancer diagnosis [@guha2024]. <br>
-
-
-This is my work and I want to add more work...
 
 ### Related work
 
@@ -104,8 +102,243 @@ kable(head(Variables))
 
 ```{r}
 
+library(tidyverse)
+library(plyr)
+library(readxl)
+getwd()
+#setwd("E:/UWF/STA6257")
+
+df <- read_excel("train_genetics.xlsx")
+dim(df)
+glimpse(df)
+df <- df[, !names(df) %in% c("Patient Id", "Patient First Name", "Family Name", "Father's name", "Institute Name", "Location of Institute", "Test 1", "Test 2", "Test 3", "Test 4", "Test 5", "Symptom 1", "Symptom 2", "Symptom 3", "Symptom 4", "Symptom 5", "Parental consent", "Follow-up", "H/O radiation exposure (x-ray)", "H/O substance abuse", "Birth asphyxia")]
+glimpse(df)
+
+# Missing value check
+#install.packages("naniar")
+library(naniar)
+#install.packages("VIM")
+library(data.table)
+
+naniar::miss_var_summary(df)
+
+VIM::aggr(df,prop=FALSE,numbers=TRUE)
+
+#df <- df %>% filter(!is.na(df$`Mother's age`))
+#df <- df %>% filter(!is.na(df$`Father's age`))
+#VIM::aggr(df,prop=FALSE,numbers=TRUE)
+#naniar::miss_var_summary(df)
+
+dt <- na.omit(df)
+dim(dt)
+sum(is.na(dt))
+
+is.data.table(dt) # to see if data.table
+dt <- as.data.table(dt)
+
+# Convert Categorical data into numerical data
+#install.packages("mltools")
+library(mltools)
+library(data.table)
+
+# Function to convert categorical variables to numeric
+convert_to_numeric <- function(x) {
+  if (is.numeric(x)) return(x)
+  factor_x <- as.factor(x)
+  as.numeric(factor_x)
+}
+
+# List of columns to convert (excluding already numeric columns and ID)
+
+columns_to_convert <- c("Status", "Respiratory Rate (breaths/min)", "Heart Rate (rates/min", "Autopsy shows birth defect (if applicable)", "Place of birth", "Assisted conception IVF/ART", "History of anomalies in previous pregnancies","Birth defects", "Blood test result", "Genetic Disorder", "Disorder Subclass", "Gender")
+
+# Convert specified columns to numeric
+dt[, (columns_to_convert) := lapply(.SD, convert_to_numeric), .SDcols = columns_to_convert]
+
+# Special handling for "Respiratory Rate" and "Heart Rate" columns
+dt[, `Respiratory Rate (breaths/min)` := as.numeric(sub("Normal \\(30-60\\)", "Tachycardia", `Respiratory Rate (breaths/min)`))]
+dt[, `Heart Rate (rates/min` := as.numeric(sub("Normal", "Tachycardia", `Heart Rate (rates/min`))]
+dt[, `Gender` := as.numeric(sub("Male", "Female", `Gender`))]
+
+
+# Convert Yes/No columns to 1/0
+yes_no_columns <- c("Genes in mother's side", "Inherited from father", "Maternal gene", "Paternal gene", "Folic acid details (peri-conceptional)", "H/O serious maternal illness")
+
+dt[, (yes_no_columns) := lapply(.SD, function(x) as.numeric(x == "Yes")), .SDcols = yes_no_columns]
+
+
+VIM::aggr(dt,prop=FALSE,numbers=TRUE)
+
+dt
+
+# EDA
+# graphs
+library(ggplot2)
+library(reshape2)
+library(tidyr)
+library(purrr)
+
+
+dt %>%
+  gather() %>% 
+  ggplot(aes(value)) +
+  facet_wrap(~ key, scales = "free") +
+  geom_histogram()
+
+# creating correlation matrix
+corr_mat <- round(cor(dt),2)
+melted_corr_mat <- melt(corr_mat)
+
+# plotting the correlation heatmap
+ggplot(data = melted_corr_mat, aes(x=Var1, y=Var2,
+                                   fill=value)) + 
+  geom_tile()
+
+
 ```
 
 ### Conclusion
 
 ## References
+
+@article{claussnitzer2020,
+  title={A brief history of human disease genetics},
+  author={Claussnitzer, Melina and Cho, Judy H and Collins, Rory and Cox, Nancy J and Dermitzakis, Emmanouil T and Hurles, Matthew E and Kathiresan, Sekar and Kenny, Eimear E and Lindgren, Cecilia M and MacArthur, Daniel G and others},
+  journal={Nature},
+  volume={577},
+  number={7789},
+  pages={179--189},
+  year={2020},
+  publisher={Nature Publishing Group UK London}
+}
+
+
+
+@article{liu2023,
+  title={Clinical diagnosis of genetic disorders at both single-nucleotide and chromosomal levels based on BGISEQ-500 platform},
+  author={Liu, Yanqiu and Mao, Liangwei and Huang, Hui and Li, Wei and Man, Jianfen and Zhang, Wenqian and Wang, Lina and Li, Long and Sun, Yan and Zhai, Teng and others},
+  journal={Human Genome Variation},
+  volume={10},
+  number={1},
+  pages={15},
+  year={2023},
+  publisher={Nature Publishing Group UK London}
+}
+
+@article{tamburrano2020,
+  title={Evaluation and cost estimation of laboratory test overuse in 43 commonly ordered parameters through a Computerized Clinical Decision Support System (CCDSS) in a large university hospital},
+  author={Tamburrano, Andrea and Vallone, Doriana and Carrozza, Cinzia and Urbani, Andrea and Sanguinetti, Maurizio and Nicolotti, Nicola and Cambieri, Andrea and Laurenti, Patrizia},
+  journal={PLoS One},
+  volume={15},
+  number={8},
+  pages={e0237159},
+  year={2020},
+  publisher={Public Library of Science San Francisco, CA USA}
+}
+
+@article{raza2022,
+  title={Predicting genetic disorder and types of disorder using chain classifier approach},
+  author={Raza, Ali and Rustam, Furqan and Siddiqui, Hafeez Ur Rehman and Diez, Isabel de la Torre and Garcia-Zapirain, Bego{\~n}a and Lee, Ernesto and Ashraf, Imran},
+  journal={Genes},
+  volume={14},
+  number={1},
+  pages={71},
+  year={2022},
+  publisher={MDPI}
+}
+
+@article{liu2019,
+  title={Prediction of gene expression patterns with generalized linear regression model},
+  author={Liu, Shuai and Lu, Mengye and Li, Hanshuang and Zuo, Yongchun},
+  journal={Frontiers in Genetics},
+  volume={10},
+  pages={120},
+  year={2019},
+  publisher={Frontiers Media SA}
+}
+
+@article{meysami2023,
+  title={Utilizing logistic regression to compare risk factors in disease modeling with imbalanced data: a case study in vitamin D and cancer incidence},
+  author={Meysami, Mohammad and Kumar, Vijay and Pugh, McKayah and Lowery, Samuel Thomas and Sur, Shantanu and Mondal, Sumona and Greene, James M},
+  journal={Frontiers in Oncology},
+  volume={13},
+  pages={1227842},
+  year={2023},
+  publisher={Frontiers Media SA}
+}
+
+@inproceedings{rusyana2021,
+  title={The lasso binary logistic regression method for selecting variables that affect the recovery of Covid-19 patients in China},
+  author={Rusyana, A and Notodiputro, KA and Sartono, B},
+  booktitle={Journal of Physics: Conference Series},
+  volume={1882},
+  number={1},
+  pages={012035},
+  year={2021},
+  organization={IOP Publishing}
+}
+
+@article{ranstam2018,
+  title={LASSO regression},
+  author={Ranstam, Jonas and Cook, Jonathan A},
+  journal={Journal of British Surgery},
+  volume={105},
+  number={10},
+  pages={1348--1348},
+  year={2018},
+  publisher={Oxford University Press}
+}
+
+@article{abdulhafedh2022,
+  title={Modeling vehicle crash frequency when multicollinearity exists in vehicle crash data: ridge regression versus ordinary least squares linear regression},
+  author={Abdulhafedh, Azad},
+  journal={Open Access Library Journal},
+  volume={9},
+  number={6},
+  pages={1--17},
+  year={2022},
+  publisher={Scientific Research Publishing}
+}
+
+@article{hodson2022,
+  title={Root mean square error (RMSE) or mean absolute error (MAE): When to use them or not},
+  author={Hodson, Timothy O},
+  journal={Geoscientific Model Development Discussions},
+  volume={2022},
+  pages={1--10},
+  year={2022},
+  publisher={G{\"o}ttingen, Germany}
+}
+
+@article{freijeiro2022,
+  title={A critical review of LASSO and its derivatives for variable selection under dependence among covariates},
+  author={Freijeiro-Gonz{\'a}lez, Laura and Febrero-Bande, Manuel and Gonz{\'a}lez-Manteiga, Wenceslao},
+  journal={International Statistical Review},
+  volume={90},
+  number={1},
+  pages={118--145},
+  year={2022},
+  publisher={Wiley Online Library}
+}
+
+@article{greenwood2020,
+  title={A comparison of penalised regression methods for informing the selection of predictive markers},
+  author={Greenwood, Christopher J and Youssef, George J and Letcher, Primrose and Macdonald, Jacqui A and Hagg, Lauryn J and Sanson, Ann and Mcintosh, Jenn and Hutchinson, Delyse M and Toumbourou, John W and Fuller-Tyszkiewicz, Matthew and others},
+  journal={PloS one},
+  volume={15},
+  number={11},
+  pages={e0242730},
+  year={2020},
+  publisher={Public Library of Science San Francisco, CA USA}
+}
+
+@article{guha2024,
+  title={Feature Selection Using Lasso Regression Enhances Deep Learning Model Performance For Diagnosis Of Lung Cancer from Transcriptomic Data},
+  author={GUHA, SOUVIK},
+  journal={bioRxiv},
+  pages={2024--05},
+  year={2024},
+  publisher={Cold Spring Harbor Laboratory}
+}
+
+
