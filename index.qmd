@@ -67,6 +67,7 @@ library(ggthemes)
 library(ggrepel)
 library(dslabs)
 library(dplyr)
+library(DT)
 ```
 
 ```{r, warning=FALSE, echo=TRUE}
@@ -75,12 +76,13 @@ library(dplyr)
 Target <- read.csv("Target - Sheet1.csv", header = TRUE)
 Variables <- read.csv("Variables - Sheet1.csv", header = TRUE)
 
-# Print the first few rows of the data frame to verify it loaded correctly
+# Print the tables showing Variables and breakdown of Target data
+
+datatable(Variables)
+
+datatable(Target)
 
 
-kable(head(Target))
-
-kable(head(Variables))
 
 # ggplot1 = murders %>% ggplot(mapping = aes(x=population/10^6, y=total)) 
 
