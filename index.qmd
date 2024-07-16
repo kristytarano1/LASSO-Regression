@@ -218,7 +218,7 @@ ggplot(data = melted_corr_mat, aes(x=Var1, y=Var2,
 ```
 
 
-### Statistical Analysis - Experiencing Errors (see code)
+### Statistical Analysis - Experiencing Errors for Definition of X (see code)
 
 ```{r, warning=FALSE, echo=TRUE}
 
