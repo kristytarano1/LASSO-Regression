@@ -24,6 +24,8 @@ editor:
   Genetic disorders and the diagnoses of problematic and infrequent disorders have shaped our existence for thousands of years [@claussnitzer2020].  The time commitment to diagnose each case correctly and efficiently is a daunting one to say the least [@liu2023]. Medical instruments are expensive and the inefficiencies that exist with overuse of computerized decision making forecasting is apparent in labs and hospitals, in this case a large university hospital [@tamburrano2020]. Studies such as the aforementioned put the research community at a crossroads since these computerized diagnosing systems are intended to be a great asset and tool for medical professionals to utilize during their diagnosing procedures. With that being said, machine learning and the diagnosing of genetic disorders has made great strides in the genomics world with an increasing variety of machine learning models being applied to predictive modeling [@raza2022]. Linear models have shown to be an ample way of predicting disorder outcomes through the targeting of what is often the root cause, gene expression and the patterns that can be extrapolated  [@liu2019]. Aside from the work of linear models, many of these disorders have been linked to varying degrees of gene expression and mutation, proper organizing of these categories through means such as a classification method provides insight  [@raza2022]. Moreover, the classification technique, Logistic regression, is capable of predicting various outcome variables related to cancer status and the probability of such an event occurring due to demographic data [@meysami2023]. Choosing to optimize a technique like Logistic regression with a regularization method such as LASSO regression indicates a simplified overall model and an increase in selected independent variables for a predictive outcome[@rusyana2021]. <br>
   
   LASSO, or Least Absolute Shrinkage and Selection Operator regression is a robust technique used to address common modeling issues like overfitting, overestimation, and multicollinearity [@ranstam2018]. LASSO regression’s power as a regularization method is exhibited best when applied to datasets demonstrating these problems such as this study on multicollinearity in vehicle crash data [@abdulhafedh2022].  The Mean Squared Error is commonly used to measure the accuracy of any given regression model and when utilizing LASSO regression, any coefficients with very high values can be reduced all the way down to zero by the introduction of a bias [@hodson2022].  LASSO adds a penalization parameter, also referred to as the L1 Penalty, which determines how much shrinkage will occur to the model’s coefficients [@freijeiro2022].  The L1 Penalty is determined by λ multiplied by the absolute value of the slope of a fitted line where the sum of squared residuals is added to the penalty to increase the bias and offset the variance of the model which has shown to be useful for developing predictive models [@greenwood2020]. The use of LASSO regression to perform feature selection has shown to be productive when coupled with a machine learning model to reach a high level of accuracy and precision when predicting gene patterns relating to cancer diagnosis [@guha2024]. <br>
+  
+  In this study, we propose to use demographic factors and health indicators to predict various disorder sub-classes. Moreover, we combine the optimizing capabilities of LASSO regression with the predictive capabilities of multinomial logistic regression to train our model so that we can determine a correct disorder and subclass outcome. We state that several participant identifying fields are omitted from the analysis and that the primary goal is to solely use key demographic and health information to make all determinations. This model is being developed to better understand what factors play a role in the diagnoses of specific disorders as well as how machine learning can be used as a tool to increase the efficiency of medical diagnoses.
 
 ### Related work
 
@@ -31,26 +33,29 @@ This section is going to cover the literature review...
 
 ## Methods
 
-The common non-parametric regression model is
-$Y_i = m(X_i) + \varepsilon_i$, where $Y_i$ can be defined as the sum of
-the regression function value $m(x)$ for $X_i$. Here $m(x)$ is unknown
-and $\varepsilon_i$ some errors. With the help of this definition, we
-can create the estimation for local averaging i.e. $m(x)$ can be
-estimated with the product of $Y_i$ average and $X_i$ is near to $x$. In
-other words, this means that we are discovering the line through the
-data points with the help of surrounding data points. The estimation
-formula is printed below [@R-base]:
+The data used was sourced from a genomics dataset that recorded various demographic and health indicators related to patients and their respective disorder and subclasses. The dataset contains within it 45 variables pertaining to the genetic disorders. Several variables were cleaned from the dataset to remove non informative variables that would not be predictive of an outcome variable. A model was developed to predict a disorder and subclass outcome for patients based solely on their recorded information. LASSO regression was used as a means to tune our model and to minimize variables with low impact to our outcome variable. To develop a baseline for performing LASSO Regression, we began with a traditional Linear Regression model:
 
 $$
-M_n(x) = \sum_{i=1}^{n} W_n (X_i) Y_i  \tag{1}
-$$ $W_n(x)$ is the sum of weights that belongs to all real numbers.
-Weights are positive numbers and small if $X_i$ is far from $x$.
+y_t = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + ... + \beta_k X_k + \varepsilon_i
+$$
 
-Another equation:
+In this model, Y_t represents the dependent variable that is determined by k number of independent variables beginning with X1, X2, and so on. B0 represents the intercept value, or the value of Y when all values of X are equal to zero, while Bi represents the coefficients of X. The coefficients (betas), along with the mean and standard deviation of the residuals (epsilons), constitute the parameters of the model [@nau2014]. The resulting equation with this frame of reference in mind is demonstrated below: 
 
 $$
-y_i = \beta_0 + \beta_1 X_1 +\varepsilon_i
+y(hat)_t = \beta_0 + \beta_1 X_1t + \beta_2 X_2t + ... + \beta_k X_kt
 $$
+
+The assumptions of the simple Linear Regression model are as follows [@bumc_correlation_regression]:
+
+  Linearity: The relationship between the dependent variables Xi and the independent variable Y must be linear, which means any change in X is proportional to a change in Y. 
+  Homoscedasticity: The variance of the residuals across each value of the dependent variables Xi should remain constant.
+  Independence: The errors demonstrated for one observation should not predict the error of any other observation. 
+  Normality: For all values of the dependent variable Xi, the data should be normally distributed. 
+  
+  
+With a simple Linear Regression model established, LASSO Regression was then applied to the split data to shrink coefficient magnitudes of dependent variables Xi that have low relevance. We used LASSO Regression to utilize its feature selection capabilities which introduced the L1 Penalty (lambda) as shown in the model below. This aims to shrink a number of the coefficients that were not addressed in the initial data preparation Bj to 0. The priority afterwards was to address which dependent variables had the most significant coefficients which allows the model to make the most accurate outcome variable prediction on a testing dataset [@ogutu2012].
+
+LASSO model equation will go here...
 
 ## Analysis and Results
 
@@ -95,7 +100,7 @@ datatable(Target)
 
 ```
 
-### Statistical Modeling
+### Exploratory Data Analysis
 
 ```{r, warning=FALSE, echo=TRUE}
 
@@ -208,6 +213,77 @@ melted_corr_mat <- melt(corr_mat)
 ggplot(data = melted_corr_mat, aes(x=Var1, y=Var2,
                                    fill=value)) + 
   geom_tile()
+
+
+```
+
+
+### Statistical Analysis - Experiencing Errors (see code)
+
+```{r, warning=FALSE, echo=TRUE}
+
+# loading packages 
+library(tidyverse)
+library(knitr)
+library(ggthemes)
+library(ggrepel)
+library(dslabs)
+library(glmnet)
+
+genetic_data <- read.csv("train_genetics.csv", header = TRUE)
+
+#genetic_data <- read_csv('/Users/kristytarano/Desktop/Stats for Data Science II/train_genetics.csv')
+
+clean_gene_data <- na.omit(genetic_data)
+
+#Defining the response variable
+#y <- clean_gene_data$`Genetic Disorder`
+
+y <- clean_gene_data$`Disorder Subclass`
+
+#Defining the matrix of predictor variables for the model
+#x <- data.matrix(clean_gene_data[,c ("Genes in mother's side", 'Inherited from father', 'Maternal gene', 'Paternal gene', 'Blood cell count (mcL)', 'Respiratory Rate (breaths/min)', 'Heart Rate (rates/min', 'Test 1', 'Test 2', 'Test 3', 'Test 4', 'Test 5', 'Gender', 'Birth asphyxia', 'Folic acid details (peri-conceptional)', 'H/O serious maternal illness', 'H/O radiation exposure (x-ray)', 'H/O substance abuse', 'Assisted conception IVF/ART', 'History of a0malies in previous pregnancies', 'Birth defects', 'White Blood cell count (thousand per microliter)', 'Symptom 1', 'Symptom 2', 'Symptom 3', 'Symptom 4', 'Symptom 5')])
+
+
+                 
+#Looking for optimal lambda value using k-fold cross validation
+#cross_val_model <- cv.glmnet(x, y, alpha= 1)
+
+#Looking for the best lambda value to produce lowest MSE
+#min_lambda <- cross_val_model$lambda.min
+
+#min_lambda
+
+
+#Graph of test MSE error
+#plot(cross_val_model)
+
+
+#Creating our LASSO regression model 
+
+#gene_model <- glmnet(x, y, alpha = 1, lambda = min_lambda)
+
+
+#coef(gene_model)
+
+
+#y_prediction <- predict(gene_model, s=min_lambda, newx = x)
+
+#finding SST and SSE
+#sst <- sum((y - mean(y))^2)
+#sse <- sum ((y_prediction - y)^2)
+
+#rsq <- 1 - sse/sst
+
+#rsq
+
+
+#test_data<- read_csv('/Users/kristytarano/Desktop/Stats for Data Science II/test.csv')
+
+#clean_test_data <- na.omit(test_data)
+
+#clean2_test_data <-as_tibble((clean_test_data %>% 
+                   # dplyr::select(`Genes in mother's side`,`Maternal gene` ,`Paternal gene` ,`Inherited from father`, `Blood cell count (mcL)`, `Respiratory Rate (breaths/min)`, `Heart Rate (rates/min`,`Gender`,`Birth asphyxia`, `Folic acid details (peri-conceptional)`, `H/O serious maternal illness`, `H/O radiation exposure (x-ray)`, `H/O substance abuse`, `Assisted conception IVF/ART`, `History of a0malies in previous pregnancies`, `Birth defects`, `White Blood cell count (thousand per microliter)`, `Symptom 1`, `Symptom 2`,`Symptom 3`,`Symptom 4`, `Symptom 5`, `Test 1`, `Test 2`,`Test 3`,`Test 4`, `Test 5`)))
 
 
 ```
