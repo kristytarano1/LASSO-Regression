@@ -27,41 +27,40 @@ editor:
   
   In this study, we propose to use demographic factors and health indicators to predict various disorder sub-classes. Moreover, we combine the optimizing capabilities of LASSO regression with the predictive capabilities of multinomial logistic regression to train our model so that we can determine a correct disorder and subclass outcome. We state that several participant identifying fields are omitted from the analysis and that the primary goal is to solely use key demographic and health information to make all determinations. This model is being developed to better understand what factors play a role in the diagnoses of specific disorders as well as how machine learning can be used as a tool to increase the efficiency of medical diagnoses.
 
-### Related work
-
-This section is going to cover the literature review...
-
 ## Methods
 
-The data used was sourced from a genomics dataset that recorded various demographic and health indicators related to patients and their respective disorder and subclasses. The dataset contains within it 45 variables pertaining to the genetic disorders. Several variables were cleaned from the dataset to remove non informative variables that would not be predictive of an outcome variable. A model was developed to predict a disorder and subclass outcome for patients based solely on their recorded information. LASSO regression was used as a means to tune our model and to minimize variables with low impact to our outcome variable. To develop a baseline for performing LASSO Regression, we began with a traditional Linear Regression model:
+LASSO regression was conducted as a means to tune our model and to minimize variables with low impact to our outcome variable. To develop a baseline for performing LASSO Regression, we began with a binary logistic regression model: 
 
-$$
-y_t = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + ... + \beta_k X_k + \varepsilon_i
-$$
 
-In this model, Y_t represents the dependent variable that is determined by k number of independent variables beginning with X1, X2, and so on. B0 represents the intercept value, or the value of Y when all values of X are equal to zero, while Bi represents the coefficients of X. The coefficients (betas), along with the mean and standard deviation of the residuals (epsilons), constitute the parameters of the model [@nau2014]. The resulting equation with this frame of reference in mind is demonstrated below: 
+...Add new formula image here (figure out image files in quarto)
 
-$$
-y(hat)_t = \beta_0 + \beta_1 X_1t + \beta_2 X_2t + ... + \beta_k X_kt
-$$
 
-The assumptions of the simple Linear Regression model are as follows [@bumc_correlation_regression]:
+In this model, the logarithm of the odds is set equal to the intercept value plus the coefficients of X. The assumption of this function is that p(X) should always be between 0 and 1. This logistic regression formula consequentially forms into an S shaped curve to fit those parameters.   
 
-  Linearity: The relationship between the dependent variables Xi and the independent variable Y must be linear, which means any change in X is proportional to a change in Y. 
-  Homoscedasticity: The variance of the residuals across each value of the dependent variables Xi should remain constant.
-  Independence: The errors demonstrated for one observation should not predict the error of any other observation. 
-  Normality: For all values of the dependent variable Xi, the data should be normally distributed. 
-  
-  
-With a simple Linear Regression model established, LASSO Regression was then applied to the split data to shrink coefficient magnitudes of dependent variables Xi that have low relevance. We used LASSO Regression to utilize its feature selection capabilities which introduced the L1 Penalty (lambda) as shown in the model below. This aims to shrink a number of the coefficients that were not addressed in the initial data preparation Bj to 0. The priority afterwards was to address which dependent variables had the most significant coefficients which allows the model to make the most accurate outcome variable prediction on a testing dataset [@ogutu2012].
+LASSO regression is an optimizing feature selection technique used to assist regression techniques such as the aforementioned reduction of overfitting through regularization.   
 
-LASSO model equation will go here...
+
+...Add new formula image here (figure out image files in quarto)
+
+
+The purpose of using a regularization technique such as LASSO regression is to introduce a  penalization parameter known as  L1. L1 is determined by multiplying Lambda with the sums of the absolute values of the estimated parameters. 
+
+
+...Add new formula image here (figure out image files in quarto)
+
+
+K-Fold Cross Validation involves splitting the data into (n) number of folds. L(f^​−i​,Di​) computes log loss which is summed with the errors for (n) number of folds. k-Fold cross validation also can interpret what variables account for variability in the model.  
 
 ## Analysis and Results
 
 ### Data and Visualization
 
-The dataset chosen for this study relates to Genomes and Genetics. It was originally used in a Machine Learning contest for contestants to design models with the ability to predict genetic disorders and their related disorder subclasses. The dataset consists of two parts: training data and test data. It is broken down into 45 variables that are applied across both the training data and the testing data. The tables below show the breakdown of the variables and the target data.
+The data employed throughout this study was sourced from a genomics dataset which recorded various demographic and health indicators describing a set of patients’ respective disorders and disorder subclasses. The dataset contains 45 variables that are a mix between categorical and continuous types which ultimately describe the genetic disorders. This data was originally split into individual training and testing datasets, but for this study only the training dataset was utilized. The training data was split into its own training and testing set for proof of concept. 
+
+During pre-processing, non-informative patient identification variables were cleaned from the dataset to remove insignificant predictive variables relating to the outcome. A multinomial logistic regression model was then developed to predict a genetic disorder outcome for patients based solely on their recorded information.  
+
+Because missing values were minimal, omission of missing values was performed to reduce the bias of introducing an imputation method as well as to meet the assumptions of logistic regression. The dataset was split using a 20:80 ratio, and K-fold cross validation was used to find the most appropriate lambda value for performing LASSO regression. A lambda value of (0.0002451) was yielded and a multinomial logistic regression was then performed using R. Cross validation also reported a deviance of  99.9%. This means the goodness-of-fit is very high and that LASSO regression is able to account for virtually all variability in the model with our variables of importance. The final model had an accuracy of 0.494 which was confirmed with a confusion matrix. The confusion matrix is able to create a ratio of the total amount of predictions that were true. This ultimately confirms the performance of the model on the testing data and predicting genetic disorder outcomes. 
+
 
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
@@ -289,6 +288,8 @@ y <- clean_gene_data$`Disorder Subclass`
 ```
 
 ## Conclusion
+
+After applying a multinomial logistic regression model to the data, LASSO regression was employed to predict genetic disorder outcomes on a genomics dataset. The dataset consisted of continuous and categorical patient demographic and health indicator data. Pre-processing consisted of omitting missing values and additional feature selection was appropriately handled through LASSO regression. The LASSO multinomial logistic regression model produced an accuracy of 0.494 supported by a confusion matrix. This suggests that about half of the predictions were correct in regard to the three types of possible genetic disorder outcomes. The accuracy of the model is also contingent on the reported Kappa value. This final data suggests that although a fair accuracy rate exists, the model should be carefully revisited and tuned accordingly. 
 
 ## References
 
