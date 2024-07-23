@@ -61,10 +61,13 @@ During pre-processing, non-informative patient identification variables were cle
 
 Because missing values were minimal, omission of missing values was performed to reduce the bias of introducing an imputation method as well as to meet the assumptions of logistic regression. The dataset was split using a 20:80 ratio, and K-fold cross validation was used to find the most appropriate lambda value for performing LASSO regression. A lambda value of (0.0002451) was yielded and a multinomial logistic regression was then performed using R. Cross validation also reported a deviance of  99.9%. This means the goodness-of-fit is very high and that LASSO regression is able to account for virtually all variability in the model with our variables of importance. The final model had an accuracy of 0.494 which was confirmed with a confusion matrix. The confusion matrix is able to create a ratio of the total amount of predictions that were true. This ultimately confirms the performance of the model on the testing data and predicting genetic disorder outcomes. 
 
-## Packages Used
+
+### Variables
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
-# loading packages 
+
+# Packages Used
+ 
 library(tidyverse)
 library(knitr)
 library(ggthemes)
@@ -87,11 +90,7 @@ library(ggplot2)
 library(reshape2)
 library(tidyr)
 library(purrr)
-```
 
-### Variables
-
-```{r, warning=FALSE, echo=TRUE}
 # Load Data
 
 Variables <- read.csv("Variables - Sheet1.csv", header = TRUE)
