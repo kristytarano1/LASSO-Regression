@@ -274,30 +274,46 @@ gene_model <- glmnet(x, y, family = "multinomial", alpha = 1, lambda = min_lambd
 
 #Coefficients of the model
 coef(gene_model)
+print(gene_model)
 
 #Creating matrix of predictor variables from test data
 x_test <- data.matrix(test_data[,c ("Genes in mother's side",'Maternal gene','Paternal gene' ,'Inherited from father', 'Blood cell count (mcL)', 'Respiratory Rate (breaths/min)_Tachypnea', 'Heart Rate (rates/min_Tachycardia','Gender_Female', 'Gender_Male','Birth asphyxia_No record', 'Birth asphyxia_Not available','Birth asphyxia_Yes','Folic acid details (peri-conceptional)', 'H/O serious maternal illness', 'H/O radiation exposure (x-ray)_No', 'H/O radiation exposure (x-ray)_Not applicable', 'H/O radiation exposure (x-ray)_Yes', 'H/O substance abuse_No', 'H/O substance abuse_Not applicable', 'H/O substance abuse_Yes', 'Assisted conception IVF/ART', 'History of a0malies in previous pregnancies', 'Birth defects_Singular', 'Blood test result_inconclusive', 'Blood test result_normal', 'Blood test result_slightly abnormal','White Blood cell count (thousand per microliter)', 'Symptom 1', 'Symptom 2','Symptom 3','Symptom 4', 'Symptom 5', 'Test 1', 'Test 2','Test 3','Test 4', 'Test 5', 'Disorder Subclass_Cancer', 'Disorder Subclass_Cystic fibrosis', 'Disorder Subclass_Diabetes', 'Disorder Subclass_Hemochromatosis', "Disorder Subclass_Leber's hereditary optic neuropathy", 'Disorder Subclass_Leigh syndrome', 'Disorder Subclass_Mitochondrial myopathy', 'Disorder Subclass_Tay-Sachs')])
 
 #Defining response variable from test data 
-#y_test <- as.factor(test_data$`Genetic Disorder`)
+y_test <- as.factor(test_data$`Genetic Disorder`)
 
-y_prediction <- predict(gene_model, s=min_lambda, newx = x_test)
 
-y_prediction
 
-#TESTING : CONFUSION MATRIX BELOW
+#CONFUSION MATRIX BELOW 
 
-#pred_prob <- predict(cross_val_model, newx = x_test, s = min_lambda, type = "response")
+#Creating prediction classes for the model
+pred_prob <- predict(gene_model, newx = x_test, s = min_lambda, type = "class")
 
-#pred_prob
-#pred_class <- ifelse(pred_prob > 0.05, 1, 0)
+#Creating the prediction probability threshold for the model
+pred_class <- ifelse(pred_prob > 0.05, 1, 0)
 
-#confusion_matrix <- table(Predicted = pred_class, Actual = y_test)
+#Creating the confusion matrix
+confusion_matrix <- table(Predicted = pred_class, Actual = y_test)
 
-#print(length(pred_class))
-#print(length(y_test))
+print(confusion_matrix)
 
-#print(confusion_matrix)
+#Calculates the overall true positive/negatives over the sum of all predictions
+accuracy <- sum(diag(confusion_matrix)) / sum(confusion_matrix)
+
+# Print the accuracy decimal
+print(paste("Accuracy:", round(accuracy, 4)))
+
+#Decimal proportion of true positives over true and false positive predictions
+precision <- diag(confusion_matrix) / rowSums(confusion_matrix)
+
+#Decimal proportion of true positives over true and false negative predictions
+recall <- diag(confusion_matrix) / colSums(confusion_matrix)
+
+#F1 Score measures accuracy and considers precision and recall and also accounts for false + and -
+f1_score <- 2 * (precision * recall) / (precision + recall)
+ 
+
+f1_score
 
 ```
 
