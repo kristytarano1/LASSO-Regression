@@ -219,7 +219,6 @@ ggplot(data = melted_corr_mat, aes(x=Var1, y=Var2,
 ### Statistical Analysis
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
-
 # loading packages 
 library(tidyverse)
 library(knitr)
@@ -230,14 +229,8 @@ library(glmnet)
 library(fastDummies)
 library(nnet)
 
-<<<<<<< Updated upstream
 #Loading data 
 genetic_data <- read_csv('train_genetics.csv')
-=======
-
-#Loading data 
-genetic_data <- read.csv("train_genetics.csv", header = TRUE)
->>>>>>> Stashed changes
 
 #Removing NA from data
 clean_gene_data <- na.omit(genetic_data)
@@ -245,11 +238,7 @@ clean_gene_data <- na.omit(genetic_data)
 #Creating dummy columns
 clean_gene_data <- dummy_cols(clean_gene_data, select_columns = c("Respiratory Rate (breaths/min)","Gender" ,"Heart Rate (rates/min", "H/O radiation exposure (x-ray)", "Birth asphyxia", "H/O substance abuse", "Birth defects", "H/O substance abuse", "Blood test result", "Disorder Subclass"), remove_first_dummy = TRUE)
 
-<<<<<<< Updated upstream
 # for consistency
-=======
- # for consistency
->>>>>>> Stashed changes
 set.seed(234)
 
 # Get row indices for the training set and setting split
@@ -259,24 +248,15 @@ train_indices <- sample(seq_len(nrow(clean_gene_data)), size = 0.8 * nrow(clean_
 train_data <- clean_gene_data[train_indices, ] # should be about 80% of the original data
 test_data <- clean_gene_data[-train_indices, ] # should be about 20% of the original data
 
-<<<<<<< Updated upstream
 
-=======
-  
->>>>>>> Stashed changes
 #Defining the response variable
 y <- as.factor(train_data$`Genetic Disorder`)
 
 
 #Defining the matrix of predictor variables for the model
 x <- data.matrix(train_data[,c ("Genes in mother's side",'Maternal gene','Paternal gene' ,'Inherited from father', 'Blood cell count (mcL)', 'Respiratory Rate (breaths/min)_Tachypnea', 'Heart Rate (rates/min_Tachycardia','Gender_Female', 'Gender_Male','Birth asphyxia_No record', 'Birth asphyxia_Not available','Birth asphyxia_Yes','Folic acid details (peri-conceptional)', 'H/O serious maternal illness', 'H/O radiation exposure (x-ray)_No', 'H/O radiation exposure (x-ray)_Not applicable', 'H/O radiation exposure (x-ray)_Yes', 'H/O substance abuse_No', 'H/O substance abuse_Not applicable', 'H/O substance abuse_Yes', 'Assisted conception IVF/ART', 'History of a0malies in previous pregnancies', 'Birth defects_Singular', 'Blood test result_inconclusive', 'Blood test result_normal', 'Blood test result_slightly abnormal','White Blood cell count (thousand per microliter)', 'Symptom 1', 'Symptom 2','Symptom 3','Symptom 4', 'Symptom 5', 'Test 1', 'Test 2','Test 3','Test 4', 'Test 5', 'Disorder Subclass_Cancer', 'Disorder Subclass_Cystic fibrosis', 'Disorder Subclass_Diabetes', 'Disorder Subclass_Hemochromatosis', "Disorder Subclass_Leber's hereditary optic neuropathy", 'Disorder Subclass_Leigh syndrome', 'Disorder Subclass_Mitochondrial myopathy', 'Disorder Subclass_Tay-Sachs')])
-<<<<<<< Updated upstream
 
 
-=======
-
-                 
->>>>>>> Stashed changes
 #Looking for optimal lamda value using k-fold cross validation
 cross_val_model <- cv.glmnet(x, y, family = "multinomial", alpha= 1)
 
@@ -292,14 +272,8 @@ plot(cross_val_model)
 #Creating our LASSO regression model 
 gene_model <- glmnet(x, y, family = "multinomial", alpha = 1, lambda = min_lambda)
 
-<<<<<<< Updated upstream
 #Coefficients of the model
 coef(gene_model)
-=======
-#Coefficients and stats of the model
-coef(gene_model)
-
->>>>>>> Stashed changes
 print(gene_model)
 
 #Creating matrix of predictor variables from test data
@@ -307,30 +281,11 @@ x_test <- data.matrix(test_data[,c ("Genes in mother's side",'Maternal gene','Pa
 
 #Defining response variable from test data 
 y_test <- as.factor(test_data$`Genetic Disorder`)
-<<<<<<< Updated upstream
-
-
-=======
-
-#y_prediction <- predict(gene_model, s=min_lambda, newx = x_test, type = "response")
 
 
 
 #CONFUSION MATRIX BELOW 
 
-#Creating the prediction probability classes
-pred_prob <- predict(gene_model, newx = x_test, s = min_lambda, type = "class")
-
-#Organizes the predictions based on threshold 
-pred_class <- ifelse(pred_prob > 0.05, 1, 0)
-
-#Builds the confusion matrix with the organized predictions and response variable from test data
-confusion_matrix <- table(Predicted = pred_class, Actual = y_test)
->>>>>>> Stashed changes
-
-#CONFUSION MATRIX BELOW 
-
-<<<<<<< Updated upstream
 #Creating prediction classes for the model
 pred_prob <- predict(gene_model, newx = x_test, s = min_lambda, type = "class")
 
@@ -353,31 +308,13 @@ precision <- diag(confusion_matrix) / rowSums(confusion_matrix)
 
 #Decimal proportion of true positives over true and false negative predictions
 recall <- diag(confusion_matrix) / colSums(confusion_matrix)
-=======
-print(confusion_matrix)
-
-#Calculates the total true predictions(+ and -) over the sum of total predictions
-accuracy <- sum(diag(confusion_matrix)) / sum(confusion_matrix)
-
-# Prints the accuracy decimal
-print(paste("Accuracy:", round(accuracy, 1)))
-
-#Checking the accuracy of the positive predictions
-precision <- diag(confusion_matrix) / rowSums(confusion_matrix)
-
-recall <- diag(confusion_matrix) / colSums(confusion_matrix)
-
-f1_score <- 2 * (precision * recall) / (precision + recall)
- 
-
-f1_score
->>>>>>> Stashed changes
 
 #F1 Score measures accuracy and considers precision and recall and also accounts for false + and -
 f1_score <- 2 * (precision * recall) / (precision + recall)
  
 
 f1_score
+
 
 ```
 
