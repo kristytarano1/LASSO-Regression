@@ -29,27 +29,21 @@ editor:
 
 ## Methods
 
-LASSO regression was conducted as a means to tune our model and to minimize variables with low impact to our outcome variable. To develop a baseline for performing LASSO Regression, we began with a binary logistic regression model: 
+LASSO regression was conducted as a means to tune our model and to minimize variables with low impact to our outcome variable. To develop a baseline for performing LASSO Regression, we began with a binary logistic regression model. The binary logistic regression model is formulated as shown below: 
+
+$$ \log\left(\frac{p}{1 - p}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_k x_k $$
+
+In this model, the logarithm of the odds is set equal to the intercept value plus the coefficients of X. The assumption of this function is that p(X) should always be between 0 and 1. This logistic regression formula consequentially forms into an S shaped curve to fit those parameters.  
+
+$$ \hat{\beta} = \arg\min_{\beta} \left( \frac{1}{2n} \sum_{i=1}^n (y_i - X_i \beta)^2 + \lambda \sum_{j=1}^p |\beta_j| \right) $$
+
+LASSO regression is an optimizing feature selection technique used to assist with common regression problems such as the aforementioned reduction of overfitting through regularization. The purpose of using a regularization technique such as LASSO regression is to introduce a  penalization parameter known as  L1. L1 is determined by multiplying Lambda with the sums of the absolute values of the estimated parameters, demonstrated by the portion of the formula shown here: 
 
 
-...Add new formula image here (figure out image files in quarto)
+$$ \lambda \sum_{j=1}^p |\beta_j| $$
 
 
-In this model, the logarithm of the odds is set equal to the intercept value plus the coefficients of X. The assumption of this function is that p(X) should always be between 0 and 1. This logistic regression formula consequentially forms into an S shaped curve to fit those parameters.   
-
-LASSO regression is an optimizing feature selection technique used to assist regression techniques such as the aforementioned reduction of overfitting through regularization.   
-
-
-...Add new formula image here (figure out image files in quarto)
-
-
-The purpose of using a regularization technique such as LASSO regression is to introduce a  penalization parameter known as  L1. L1 is determined by multiplying Lambda with the sums of the absolute values of the estimated parameters. 
-
-
-...Add new formula image here (figure out image files in quarto)
-
-
-K-Fold Cross Validation involves splitting the data into (n) number of folds. L(f^​−i​,Di​) computes log loss which is summed with the errors for (n) number of folds. k-Fold cross validation also can interpret what variables account for variability in the model.  
+K-Fold Cross Validation involves splitting the data into (n) number of folds. L(f^​−i​,Di​) computes log loss which is summed with the errors for (n) number of folds. K-Fold cross validation also can interpret what variables account for variability in the model.  
 
 ## Analysis and Results
 
