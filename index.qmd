@@ -1,5 +1,5 @@
 ---
-title: "Predictive Capabilities of LASSO Regression"
+title: "Predictive Capabilities ofLASSO Regression"
 author: "Kayla Hayes, HJ Kim, Kristy Tarano, Andrew Melara-Suazo"
 date: '`r Sys.Date()`'
 format:
@@ -88,11 +88,12 @@ tool to increase the efficiency of medical diagnoses.
 ## Methods
 
 LASSO regression was conducted as a means to tune our model and to
-minimize variables with low impact to our outcome variable. To develop a baseline for performing LASSO Regression, we began with a multinomial
+minimize variables with low impact to our outcome variable. To develop a
+baseline for performing LASSO Regression, we began with a multinomial
 logistic regression model. The multinomial logistic regression model is
 formulated as shown below:
 
-$$ logit(Pi)=ln(\frac{{P}i}{{P}reference})  = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_k x_k $$
+$$ logit(Pi)=ln(\frac{Pi}{Preference})  = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_k x_k $$
 
 In this model, the logarithm of the odds is set equal to the intercept
 value plus the coefficients of X. The assumption of this function is

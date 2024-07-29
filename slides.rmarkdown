@@ -17,6 +17,7 @@ editor:
     wrap: 72
 ---
 
+
 ## Introduction {.smaller}
 
 - Diagnosing genetic disorders has been a significant challenge for thousands of years, requiring substantial time and resources, and is often hindered by inefficiencies in computerized decision-making systems in medical settings[@claussnitzer2020] [@liu2023] [@tamburrano2020].
@@ -49,6 +50,7 @@ $$  \frac{1}{K} \sum_{k=1}^K \text{Err}_k $$
 The data employed throughout this study was sourced from a genomics dataset which recorded various demographic and health indicators describing a set of patients’ respective disorders and disorder subclasses. The dataset contains 45 variables that are a mix between categorical and continuous types which ultimately describe the genetic disorders. This data was originally split into individual training and testing datasets, but for this study only the training dataset was utilized. The training data was split into its own training and testing set for proof of concept. 
 
 #### Variables in Original Dataset
+
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 
@@ -87,7 +89,9 @@ datatable(Variables)
 
 ```
 
+
 #### Target Data from Original Dataset
+
 
 ```{r, warning=FALSE, echo=TRUE}
 
@@ -99,11 +103,13 @@ datatable(Target)
 
 ```
 
+
 #### Missing Values
 
 During pre-processing, non-informative patient identification variables were cleaned from the dataset to remove insignificant predictive variables relating to the outcome. A multinomial logistic regression model was then developed to predict a genetic disorder outcome for patients based solely on their recorded information.  
 
 Because missing values were minimal, omission of missing values was performed to reduce the bias of introducing an imputation method as well as to meet the assumptions of binary logistic regression. The dataset was split using a 20:80 ratio, and K-Fold Cross Validation was used to find the most appropriate lambda value for performing LASSO regression. A lambda value of (0.0002451) was yielded and a multinomial logistic regression was then performed using R. Cross validation also reported a deviance of  99.9%. This means the goodness-of-fit is very high and that LASSO regression is able to account for virtually all variability amongst the variables of importance. The final model had an accuracy of 0.494 which was confirmed with a confusion matrix. The confusion matrix is able to create a ratio of the total amount of predictions that were true. This ultimately confirms the performance of the model on the testing data and predicting genetic disorder outcomes. 
+
 
 
 ```{r, warning=FALSE, echo=TRUE}
@@ -164,7 +170,9 @@ VIM::aggr(dt,prop=FALSE,numbers=TRUE)
 
 ```
 
+
 #### Cleaned Data
+
 
 ```{r, warning=FALSE, echo=TRUE}
 
@@ -173,7 +181,9 @@ datatable(dt)
 ```
 
 
+
 #### Histograms
+
 
 ```{r, warning=FALSE, echo=TRUE}
 
@@ -189,7 +199,9 @@ dt %>%
 ```
 
 
+
 #### Correlation Heatmap
+
 
 ```{r, warning=FALSE, echo=TRUE}
 
@@ -206,7 +218,9 @@ ggplot(data = melted_corr_mat, aes(x=Var1, y=Var2,
 ```
 
 
+
 ## Statistical Analysis
+
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 # loading packages 
@@ -309,6 +323,7 @@ f1_score
 
 ```
 
+
 ## Conclusion
 
 ::: {.callout-tip title="Performance"}
@@ -345,6 +360,7 @@ Selected variables through the feature selection might have helped to improve
 ## References
 
 <div id="refs"></div>
+
 
 
 
