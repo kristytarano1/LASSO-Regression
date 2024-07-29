@@ -1,0 +1,321 @@
+---
+title: "Predictive Capabailites of <br> LASSO Regression "
+author: "Kayla Hayes, Kristy Tarano, HJ Kim, Andrew Melara-Suazo"
+date: '`r Sys.Date()`'
+format: 
+  revealjs:
+        theme: league
+course: STA 6257 - Advanced Statistical Modeling
+bibliography: references.bib # file contains bibtex for references
+#always_allow_html: true # this allows to get PDF with HTML features
+self-contained: true
+execute: 
+  warning: false
+  message: false
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+## Introduction {.smaller}
+
+- Diagnosing genetic disorders has been a significant challenge for thousands of years, requiring substantial time and resources, and is often hindered by inefficiencies in computerized decision-making systems in medical settings[@claussnitzer2020] [@liu2023] [@tamburrano2020].
+- Machine learning has advanced the diagnosis of genetic disorders, with linear models effectively predicting disorder outcomes by targeting gene expression patterns[@raza2022] [@liu2019].
+- Logistic regression, optimized with LASSO (Least Absolute Shrinkage and Selection Operator) regression, simplifies models and improves the selection of independent variables, addressing issues like overfitting and multicollinearity, thereby enhancing predictive accuracy[@rusyana2021] [@ranstam2018].
+- This study aims to use demographic and health indicators to predict disorder sub-classes by combining LASSO and multinomial logistic regression, focusing on key information to understand factors influencing diagnoses and improve diagnostic efficiency.
+
+## Methods {.smaller}
+
+Multinomial Logistic Regression:
+
+$$ logit(Pi)=ln(\frac{{P}i}{{P}reference})  = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_k x_k $$
+LASSO Regression: 
+
+$$ \hat{\beta} = \arg\min_{\beta} \left( \frac{1}{2n} \sum_{i=1}^n (y_i - X_i \beta)^2 + \lambda \sum_{j=1}^p |\beta_j| \right) $$
+L1 Penalization Portion:
+
+$$ \lambda \sum_{j=1}^p |\beta_j| $$
+
+
+K-Fold Cross Validation: 
+
+$$  \frac{1}{K} \sum_{k=1}^K \text{Err}_k $$
+
+
+## Analysis and Results
+
+### Data and Visualization
+
+The data employed throughout this study was sourced from a genomics dataset which recorded various demographic and health indicators describing a set of patients’ respective disorders and disorder subclasses. The dataset contains 45 variables that are a mix between categorical and continuous types which ultimately describe the genetic disorders. This data was originally split into individual training and testing datasets, but for this study only the training dataset was utilized. The training data was split into its own training and testing set for proof of concept. 
+
+#### Variables in Original Dataset
+
+```{r, warning=FALSE, echo=T, message=FALSE}
+
+# Packages Used
+ 
+library(tidyverse)
+library(knitr)
+library(ggthemes)
+library(ggrepel)
+library(dslabs)
+library(dplyr)
+library(DT)
+library(glmnet)
+library(fastDummies)
+library(nnet)
+library(plyr)
+library(readxl)
+#install.packages("naniar")
+library(naniar) 
+#install.packages("VIM")
+library(data.table)
+#install.packages("mltools")
+library(mltools)
+library(ggplot2)
+library(reshape2)
+library(tidyr)
+library(purrr)
+
+# Load Data
+
+Variables <- read.csv("Variables - Sheet1.csv", header = TRUE)
+
+# Display the Variables table
+
+datatable(Variables)
+
+```
+
+#### Target Data from Original Dataset
+
+```{r, warning=FALSE, echo=TRUE}
+
+Target <- read.csv("Target - Sheet1.csv", header = TRUE)
+
+# Display the Target Data table
+
+datatable(Target)
+
+```
+
+#### Missing Values
+
+During pre-processing, non-informative patient identification variables were cleaned from the dataset to remove insignificant predictive variables relating to the outcome. A multinomial logistic regression model was then developed to predict a genetic disorder outcome for patients based solely on their recorded information.  
+
+Because missing values were minimal, omission of missing values was performed to reduce the bias of introducing an imputation method as well as to meet the assumptions of binary logistic regression. The dataset was split using a 20:80 ratio, and K-Fold Cross Validation was used to find the most appropriate lambda value for performing LASSO regression. A lambda value of (0.0002451) was yielded and a multinomial logistic regression was then performed using R. Cross validation also reported a deviance of  99.9%. This means the goodness-of-fit is very high and that LASSO regression is able to account for virtually all variability amongst the variables of importance. The final model had an accuracy of 0.494 which was confirmed with a confusion matrix. The confusion matrix is able to create a ratio of the total amount of predictions that were true. This ultimately confirms the performance of the model on the testing data and predicting genetic disorder outcomes. 
+
+
+```{r, warning=FALSE, echo=TRUE}
+
+df <- read_excel("train_genetics.xlsx")
+# dim(df)
+# glimpse(df)
+df <- df[, !names(df) %in% c("Patient Id", "Patient First Name", "Family Name", "Father's name", "Institute Name", "Location of Institute", "Test 1", "Test 2", "Test 3", "Test 4", "Test 5", "Symptom 1", "Symptom 2", "Symptom 3", "Symptom 4", "Symptom 5", "Parental consent", "Follow-up", "H/O radiation exposure (x-ray)", "H/O substance abuse", "Birth asphyxia")]
+# datatable(df)
+
+# Missing value check
+
+datatable(miss_var_summary(df))
+
+VIM::aggr(df,prop=FALSE,numbers=TRUE)
+
+#df <- df %>% filter(!is.na(df$`Mother's age`))
+#df <- df %>% filter(!is.na(df$`Father's age`))
+#VIM::aggr(df,prop=FALSE,numbers=TRUE)
+#naniar::miss_var_summary(df)
+
+dt <- na.omit(df)
+dim(dt)
+sum(is.na(dt))
+
+is.data.table(dt) # to see if data.table
+dt <- as.data.table(dt)
+
+# Convert Categorical data into numerical data
+
+# Function to convert categorical variables to numeric
+convert_to_numeric <- function(x) {
+  if (is.numeric(x)) return(x)
+  factor_x <- as.factor(x)
+  as.numeric(factor_x)
+}
+
+# List of columns to convert (excluding already numeric columns and ID)
+
+columns_to_convert <- c("Status", "Respiratory Rate (breaths/min)", "Heart Rate (rates/min", "Autopsy shows birth defect (if applicable)", "Place of birth", "Assisted conception IVF/ART", "History of anomalies in previous pregnancies","Birth defects", "Blood test result", "Genetic Disorder", "Disorder Subclass", "Gender")
+
+# Convert specified columns to numeric
+dt[, (columns_to_convert) := lapply(.SD, convert_to_numeric), .SDcols = columns_to_convert]
+
+# Special handling for "Respiratory Rate" and "Heart Rate" columns
+dt[, `Respiratory Rate (breaths/min)` := as.numeric(sub("Normal \\(30-60\\)", "Tachycardia", `Respiratory Rate (breaths/min)`))]
+dt[, `Heart Rate (rates/min` := as.numeric(sub("Normal", "Tachycardia", `Heart Rate (rates/min`))]
+dt[, `Gender` := as.numeric(sub("Male", "Female", `Gender`))]
+
+
+# Convert Yes/No columns to 1/0
+yes_no_columns <- c("Genes in mother's side", "Inherited from father", "Maternal gene", "Paternal gene", "Folic acid details (peri-conceptional)", "H/O serious maternal illness")
+
+dt[, (yes_no_columns) := lapply(.SD, function(x) as.numeric(x == "Yes")), .SDcols = yes_no_columns]
+
+
+VIM::aggr(dt,prop=FALSE,numbers=TRUE)
+
+```
+
+#### Cleaned Data
+
+```{r, warning=FALSE, echo=TRUE}
+
+datatable(dt)
+
+```
+
+
+#### Histograms
+
+```{r, warning=FALSE, echo=TRUE}
+
+# EDA
+# graphs
+
+dt %>%
+  gather() %>% 
+  ggplot(aes(value)) +
+  facet_wrap(~ key, scales = "free") +
+  geom_histogram()
+
+```
+
+
+#### Correlation Heatmap
+
+```{r, warning=FALSE, echo=TRUE}
+
+# creating correlation matrix
+corr_mat <- round(cor(dt),2)
+melted_corr_mat <- melt(corr_mat)
+
+# plotting the correlation heatmap
+ggplot(data = melted_corr_mat, aes(x=Var1, y=Var2,
+                                   fill=value)) + 
+  geom_tile()
+
+
+```
+
+
+## Statistical Analysis
+
+```{r, warning=FALSE, echo=T, message=FALSE}
+# loading packages 
+library(tidyverse)
+library(knitr)
+library(ggthemes)
+library(ggrepel)
+library(dslabs)
+library(glmnet)
+library(fastDummies)
+library(nnet)
+
+#Loading data 
+genetic_data <- read_csv('train_genetics.csv')
+
+#Removing NA from data
+clean_gene_data <- na.omit(genetic_data)
+
+#Creating dummy columns
+clean_gene_data <- dummy_cols(clean_gene_data, select_columns = c("Respiratory Rate (breaths/min)","Gender" ,"Heart Rate (rates/min", "H/O radiation exposure (x-ray)", "Birth asphyxia", "H/O substance abuse", "Birth defects", "H/O substance abuse", "Blood test result", "Disorder Subclass"), remove_first_dummy = TRUE)
+
+# for consistency
+set.seed(234)
+
+# Get row indices for the training set and setting split
+train_indices <- sample(seq_len(nrow(clean_gene_data)), size = 0.8 * nrow(clean_gene_data))
+
+# Split the data into 80:20
+train_data <- clean_gene_data[train_indices, ] # should be about 80% of the original data
+test_data <- clean_gene_data[-train_indices, ] # should be about 20% of the original data
+
+
+#Defining the response variable
+y <- as.factor(train_data$`Genetic Disorder`)
+
+
+#Defining the matrix of predictor variables for the model
+x <- data.matrix(train_data[,c ("Genes in mother's side",'Maternal gene','Paternal gene' ,'Inherited from father', 'Blood cell count (mcL)', 'Respiratory Rate (breaths/min)_Tachypnea', 'Heart Rate (rates/min_Tachycardia','Gender_Female', 'Gender_Male','Birth asphyxia_No record', 'Birth asphyxia_Not available','Birth asphyxia_Yes','Folic acid details (peri-conceptional)', 'H/O serious maternal illness', 'H/O radiation exposure (x-ray)_No', 'H/O radiation exposure (x-ray)_Not applicable', 'H/O radiation exposure (x-ray)_Yes', 'H/O substance abuse_No', 'H/O substance abuse_Not applicable', 'H/O substance abuse_Yes', 'Assisted conception IVF/ART', 'History of a0malies in previous pregnancies', 'Birth defects_Singular', 'Blood test result_inconclusive', 'Blood test result_normal', 'Blood test result_slightly abnormal','White Blood cell count (thousand per microliter)', 'Symptom 1', 'Symptom 2','Symptom 3','Symptom 4', 'Symptom 5', 'Test 1', 'Test 2','Test 3','Test 4', 'Test 5', 'Disorder Subclass_Cancer', 'Disorder Subclass_Cystic fibrosis', 'Disorder Subclass_Diabetes', 'Disorder Subclass_Hemochromatosis', "Disorder Subclass_Leber's hereditary optic neuropathy", 'Disorder Subclass_Leigh syndrome', 'Disorder Subclass_Mitochondrial myopathy', 'Disorder Subclass_Tay-Sachs')])
+
+
+#Looking for optimal lamda value using k-fold cross validation
+cross_val_model <- cv.glmnet(x, y, family = "multinomial", alpha= 1)
+
+#Looking for the best lambda value 
+min_lambda <- cross_val_model$lambda.min
+
+#Value of Lambda
+min_lambda
+
+#| echo: true 
+#Graph of test MSE error
+plot(cross_val_model)
+
+#Creating our LASSO regression model 
+gene_model <- glmnet(x, y, family = "multinomial", alpha = 1, lambda = min_lambda)
+
+#Coefficients of the model
+coef(gene_model)
+print(gene_model)
+
+#Creating matrix of predictor variables from test data
+x_test <- data.matrix(test_data[,c ("Genes in mother's side",'Maternal gene','Paternal gene' ,'Inherited from father', 'Blood cell count (mcL)', 'Respiratory Rate (breaths/min)_Tachypnea', 'Heart Rate (rates/min_Tachycardia','Gender_Female', 'Gender_Male','Birth asphyxia_No record', 'Birth asphyxia_Not available','Birth asphyxia_Yes','Folic acid details (peri-conceptional)', 'H/O serious maternal illness', 'H/O radiation exposure (x-ray)_No', 'H/O radiation exposure (x-ray)_Not applicable', 'H/O radiation exposure (x-ray)_Yes', 'H/O substance abuse_No', 'H/O substance abuse_Not applicable', 'H/O substance abuse_Yes', 'Assisted conception IVF/ART', 'History of a0malies in previous pregnancies', 'Birth defects_Singular', 'Blood test result_inconclusive', 'Blood test result_normal', 'Blood test result_slightly abnormal','White Blood cell count (thousand per microliter)', 'Symptom 1', 'Symptom 2','Symptom 3','Symptom 4', 'Symptom 5', 'Test 1', 'Test 2','Test 3','Test 4', 'Test 5', 'Disorder Subclass_Cancer', 'Disorder Subclass_Cystic fibrosis', 'Disorder Subclass_Diabetes', 'Disorder Subclass_Hemochromatosis', "Disorder Subclass_Leber's hereditary optic neuropathy", 'Disorder Subclass_Leigh syndrome', 'Disorder Subclass_Mitochondrial myopathy', 'Disorder Subclass_Tay-Sachs')])
+
+#Defining response variable from test data 
+y_test <- as.factor(test_data$`Genetic Disorder`)
+
+
+
+#CONFUSION MATRIX BELOW 
+
+#Creating prediction classes for the model
+pred_prob <- predict(gene_model, newx = x_test, s = min_lambda, type = "class")
+
+#Creating the prediction probability threshold for the model
+pred_class <- ifelse(pred_prob > 0.05, 1, 0)
+
+#Creating the confusion matrix
+confusion_matrix <- table(Predicted = pred_class, Actual = y_test)
+
+print(confusion_matrix)
+
+#Calculates the overall true positive/negatives over the sum of all predictions
+accuracy <- sum(diag(confusion_matrix)) / sum(confusion_matrix)
+
+# Print the accuracy decimal
+print(paste("Accuracy:", round(accuracy, 4)))
+
+#Decimal proportion of true positives over true and false positive predictions
+precision <- diag(confusion_matrix) / rowSums(confusion_matrix)
+
+#Decimal proportion of true positives over true and false negative predictions
+recall <- diag(confusion_matrix) / colSums(confusion_matrix)
+
+#F1 Score measures accuracy and considers precision and recall and also accounts for false + and -
+f1_score <- 2 * (precision * recall) / (precision + recall)
+ 
+
+f1_score
+
+
+```
+
+## Conclusion
+
+
+
+## References
+
+<div id="refs"></div>
+
+
+

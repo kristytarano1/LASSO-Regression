@@ -1,5 +1,5 @@
 ---
-title: "LASSO Regression"
+title: "Predictive Capabilities of LASSO Regression"
 author: "Kayla Hayes, HJ Kim, Kristy Tarano, Andrew Melara-Suazo"
 date: '`r Sys.Date()`'
 format:
@@ -17,44 +17,123 @@ editor:
     wrap: 72
 ---
 
+[Presentation](slides.html)
+
 ## Introduction
 
 ### What is LASSO Regression?
 
-Genetics and the diagnoses of problematic and infrequent disorders caused by genetics has shaped our existence for thousands of years [@claussnitzer2020].  The time commitment to diagnose each case correctly and efficiently is a daunting one to say the least [@liu2023]. Medical instruments are expensive and the inefficiencies that exist with overuse of computerized decision making forecasting is apparent in labs and hospitals, in this case a large university hospital [@tamburrano2020]. Studies such as the aforementioned put the research community at a crossroads since these computerized diagnosing systems are intended to be a great asset and tool for medical professionals to utilize during their diagnosing procedures. With that being said, machine learning and the diagnosing of genetic disorders has made great strides in the genomics world with an increasing variety of machine learning models being applied to predictive modeling [@raza2022]. Linear models have shown to be an ample way of predicting disorder outcomes through the targeting of what is often the root cause, gene expression and the patterns that can be extrapolated  [@liu2019]. Aside from the work of linear models, many of these disorders have been linked to varying degrees of gene expression and mutation, proper organizing of these categories through means such as a classification method provides insight  [@raza2022]. Moreover, the classification technique, Logistic regression, is capable of predicting various outcome variables related to cancer status and the probability of such an event occurring due to demographic data [@meysami2023]. Choosing to optimize a technique like Logistic regression with a regularization method such as LASSO regression indicates a simplified overall model and an increase in selected independent variables for a predictive outcome[@rusyana2021]. <br>
-  
-LASSO, or Least Absolute Shrinkage and Selection Operator regression is a robust technique used to address common modeling issues like overfitting, overestimation, and multicollinearity [@ranstam2018]. LASSO regression’s power as a regularization method is exhibited best when applied to datasets demonstrating these problems such as this study on multicollinearity in vehicle crash data [@abdulhafedh2022].  The Mean Squared Error is commonly used to measure the accuracy of any given regression model and when utilizing LASSO regression, any coefficients with very high values can be reduced all the way down to zero by the introduction of a bias [@hodson2022].  LASSO adds a penalization parameter, also referred to as the L1 Penalty, which determines how much shrinkage will occur to the model’s coefficients [@freijeiro2022].  The L1 Penalty is determined by λ multiplied by the absolute value of the slope of a fitted line where the sum of squared residuals is added to the penalty to increase the bias and offset the variance of the model which has shown to be useful for developing predictive models [@greenwood2020]. The use of LASSO regression to perform feature selection has shown to be productive when coupled with a machine learning model to reach a high level of accuracy and precision when predicting gene patterns relating to cancer diagnosis [@guha2024]. <br>
-  
-  In this study, we propose to use demographic factors and health indicators to predict various disorder sub-classes. Moreover, we combine the optimizing capabilities of LASSO regression with the predictive capabilities of multinomial logistic regression to train our model so that we can determine a correct disorder and subclass outcome. We state that several participant identifying fields are omitted from the analysis and that the primary goal is to solely use key demographic and health information to make all determinations. This model is being developed to better understand what factors play a role in the diagnoses of specific disorders as well as how machine learning can be used as a tool to increase the efficiency of medical diagnoses.
+Genetics and the diagnoses of problematic and infrequent disorders
+caused by genetics has shaped our existence for thousands of years
+[@claussnitzer2020]. The time commitment to diagnose each case correctly
+and efficiently is a daunting one to say the least [@liu2023]. Medical
+instruments are expensive and the inefficiencies that exist with overuse
+of computerized decision making forecasting is apparent in labs and
+hospitals, in this case a large university hospital [@tamburrano2020].
+Studies such as the aforementioned put the research community at a
+crossroads since these computerized diagnosing systems are intended to
+be a great asset and tool for medical professionals to utilize during
+their diagnosing procedures. With that being said, machine learning and
+the diagnosing of genetic disorders has made great strides in the
+genomics world with an increasing variety of machine learning models
+being applied to predictive modeling [@raza2022]. Linear models have
+shown to be an ample way of predicting disorder outcomes through the
+targeting of what is often the root cause, gene expression and the
+patterns that can be extrapolated [@liu2019]. Aside from the work of
+linear models, many of these disorders have been linked to varying
+degrees of gene expression and mutation, proper organizing of these
+categories through means such as a classification method provides
+insight [@raza2022]. Moreover, the classification technique, Logistic
+regression, is capable of predicting various outcome variables related
+to cancer status and the probability of such an event occurring due to
+demographic data [@meysami2023]. Choosing to optimize a technique like
+Logistic regression with a regularization method such as LASSO
+regression indicates a simplified overall model and an increase in
+selected independent variables for a predictive outcome[@rusyana2021].
+<br>
+
+LASSO, or Least Absolute Shrinkage and Selection Operator regression is
+a robust technique used to address common modeling issues like
+overfitting, overestimation, and multicollinearity [@ranstam2018]. LASSO
+regression's power as a regularization method is exhibited best when
+applied to datasets demonstrating these problems such as this study on
+multicollinearity in vehicle crash data [@abdulhafedh2022]. The Mean
+Squared Error is commonly used to measure the accuracy of any given
+regression model and when utilizing LASSO regression, any coefficients
+with very high values can be reduced all the way down to zero by the
+introduction of a bias [@hodson2022]. LASSO adds a penalization
+parameter, also referred to as the L1 Penalty, which determines how much
+shrinkage will occur to the model's coefficients [@freijeiro2022]. The
+L1 Penalty is determined by λ multiplied by the absolute value of the
+slope of a fitted line where the sum of squared residuals is added to
+the penalty to increase the bias and offset the variance of the model
+which has shown to be useful for developing predictive models
+[@greenwood2020]. The use of LASSO regression to perform feature
+selection has shown to be productive when coupled with a machine
+learning model to reach a high level of accuracy and precision when
+predicting gene patterns relating to cancer diagnosis [@guha2024]. <br>
+
+In this study, we propose to use demographic factors and health
+indicators to predict various disorder sub-classes. Moreover, we combine
+the optimizing capabilities of LASSO regression with the predictive
+capabilities of multinomial logistic regression to train our model so
+that we can determine a correct disorder and subclass outcome. We state
+that several participant identifying fields are omitted from the
+analysis and that the primary goal is to solely use key demographic and
+health information to make all determinations. This model is being
+developed to better understand what factors play a role in the diagnoses
+of specific disorders as well as how machine learning can be used as a
+tool to increase the efficiency of medical diagnoses.
 
 ## Methods
 
-LASSO regression was conducted as a means to tune our model and to minimize variables with low impact to our outcome variable. To develop a baseline for performing LASSO Regression, we began with a binary logistic regression model. The binary logistic regression model is formulated as shown below: 
+LASSO regression was conducted as a means to tune our model and to
+minimize variables with low impact to our outcome variable. To develop a baseline for performing LASSO Regression, we began with a multinomial
+logistic regression model. The multinomial logistic regression model is
+formulated as shown below:
 
-$$ \log\left(\frac{p}{1 - p}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_k x_k $$
+$$ logit(Pi)=ln(\frac{{P}i}{{P}reference})  = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_k x_k $$
 
-In this model, the logarithm of the odds is set equal to the intercept value plus the coefficients of X. The assumption of this function is that p(X) should always be between 0 and 1. This logistic regression formula consequentially forms into an S shaped curve to fit those parameters.  
+In this model, the logarithm of the odds is set equal to the intercept
+value plus the coefficients of X. The assumption of this function is
+that p(X) should always be between 0 and 1. This logistic regression
+formula consequentially forms into an S shaped curve to fit those
+parameters.
 
 $$ \hat{\beta} = \arg\min_{\beta} \left( \frac{1}{2n} \sum_{i=1}^n (y_i - X_i \beta)^2 + \lambda \sum_{j=1}^p |\beta_j| \right) $$
 
-LASSO regression is an optimizing feature selection technique used to assist with common regression problems such as the aforementioned reduction of overfitting through regularization. The purpose of using a regularization technique such as LASSO regression is to introduce a  penalization parameter known as  L1. L1 is determined by multiplying Lambda with the sums of the absolute values of the estimated parameters, demonstrated by the portion of the formula shown here: 
-
+LASSO regression is an optimizing feature selection technique used to
+assist with common regression problems such as the aforementioned
+reduction of overfitting through regularization. The purpose of using a
+regularization technique such as LASSO regression is to introduce a
+penalization parameter known as L1. L1 is determined by multiplying
+Lambda with the sums of the absolute values of the estimated parameters,
+demonstrated by the portion of the formula shown here:
 
 $$ \lambda \sum_{j=1}^p |\beta_j| $$
 
-
-K-Fold Cross Validation involves splitting the data into "n" number of folds. The first formula shown here computes log loss which is summed with the errors for "n" number of folds. K-Fold Cross Validation also can interpret what variables account for variability in the model.  
+K-Fold Cross Validation involves splitting the data into "n" number of
+folds. The first formula shown here computes log loss which is summed
+with the errors for "n" number of folds. K-Fold Cross Validation also
+can interpret what variables account for variability in the model.
 
 $$ \text{Log Loss} = -\frac{1}{n} \sum_{i=1}^n \left[ y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right] $$
 
 $$ \text{K-Fold Cross Validation} = \frac{1}{K} \sum_{k=1}^K \text{Err}_k $$
 
-
 ## Analysis and Results
 
 ### Data and Visualization
 
-The data employed throughout this study was sourced from a genomics dataset which recorded various demographic and health indicators describing a set of patients’ respective disorders and disorder subclasses. The dataset contains 45 variables that are a mix between categorical and continuous types which ultimately describe the genetic disorders. This data was originally split into individual training and testing datasets, but for this study only the training dataset was utilized. The training data was split into its own training and testing set for proof of concept. 
+The data employed throughout this study was sourced from a genomics
+dataset which recorded various demographic and health indicators
+describing a set of patients' respective disorders and disorder
+subclasses. The dataset contains 45 variables that are a mix between
+categorical and continuous types which ultimately describe the genetic
+disorders. This data was originally split into individual training and
+testing datasets, but for this study only the training dataset was
+utilized. The training data was split into its own training and testing
+set for proof of concept.
 
 #### Variables in Original Dataset
 
@@ -109,10 +188,26 @@ datatable(Target)
 
 #### Missing Values
 
-During pre-processing, non-informative patient identification variables were cleaned from the dataset to remove insignificant predictive variables relating to the outcome. A multinomial logistic regression model was then developed to predict a genetic disorder outcome for patients based solely on their recorded information.  
+During pre-processing, non-informative patient identification variables
+were cleaned from the dataset to remove insignificant predictive
+variables relating to the outcome. A multinomial logistic regression
+model was then developed to predict a genetic disorder outcome for
+patients based solely on their recorded information.
 
-Because missing values were minimal, omission of missing values was performed to reduce the bias of introducing an imputation method as well as to meet the assumptions of binary logistic regression. The dataset was split using a 20:80 ratio, and K-Fold Cross Validation was used to find the most appropriate lambda value for performing LASSO regression. A lambda value of (0.0002451) was yielded and a multinomial logistic regression was then performed using R. Cross validation also reported a deviance of  99.9%. This means the goodness-of-fit is very high and that LASSO regression is able to account for virtually all variability amongst the variables of importance. The final model had an accuracy of 0.494 which was confirmed with a confusion matrix. The confusion matrix is able to create a ratio of the total amount of predictions that were true. This ultimately confirms the performance of the model on the testing data and predicting genetic disorder outcomes. 
-
+Because missing values were minimal, omission of missing values was
+performed to reduce the bias of introducing an imputation method as well
+as to meet the assumptions of binary logistic regression. The dataset
+was split using a 20:80 ratio, and K-Fold Cross Validation was used to
+find the most appropriate lambda value for performing LASSO regression.
+A lambda value of (0.0002451) was yielded and a multinomial logistic
+regression was then performed using R. Cross validation also reported a
+deviance of 99.9%. This means the goodness-of-fit is very high and that
+LASSO regression is able to account for virtually all variability
+amongst the variables of importance. The final model had an accuracy of
+0.494 which was confirmed with a confusion matrix. The confusion matrix
+is able to create a ratio of the total amount of predictions that were
+true. This ultimately confirms the performance of the model on the
+testing data and predicting genetic disorder outcomes.
 
 ```{r, warning=FALSE, echo=TRUE}
 
@@ -180,7 +275,6 @@ datatable(dt)
 
 ```
 
-
 #### Histograms
 
 ```{r, warning=FALSE, echo=TRUE}
@@ -195,7 +289,6 @@ dt %>%
   geom_histogram()
 
 ```
-
 
 #### Correlation Heatmap
 
@@ -212,7 +305,6 @@ ggplot(data = melted_corr_mat, aes(x=Var1, y=Var2,
 
 
 ```
-
 
 ## Statistical Analysis
 
@@ -318,11 +410,20 @@ f1_score
 
 ## Conclusion
 
-After applying a multinomial logistic regression model to the data, LASSO regression was employed to predict genetic disorder outcomes on a genomics dataset. The dataset consisted of continuous and categorical patient demographic and health indicator data. Pre-processing consisted of omitting missing values and additional feature selection was appropriately handled through LASSO regression. The LASSO multinomial logistic regression model produced an accuracy of 0.494 supported by a confusion matrix. This suggests that about half of the predictions were correct in regard to the three types of possible genetic disorder outcomes. The accuracy of the model is also contingent on the reported Kappa value. This final data suggests that although a fair accuracy rate exists, the model should be carefully revisited and tuned accordingly. 
+After applying a multinomial logistic regression model to the data,
+LASSO regression was employed to predict genetic disorder outcomes on a
+genomics dataset. The dataset consisted of continuous and categorical
+patient demographic and health indicator data. Pre-processing consisted
+of omitting missing values and additional feature selection was
+appropriately handled through LASSO regression. The LASSO multinomial
+logistic regression model produced an accuracy of 0.494 supported by a
+confusion matrix. This suggests that about half of the predictions were
+correct in regard to the three types of possible genetic disorder
+outcomes. The accuracy of the model is also contingent on the reported
+Kappa value. This final data suggests that although a fair accuracy rate
+exists, the model should be carefully revisited and tuned accordingly.
 
 ## References
 
-<div id="refs"></div>
-
-
-
+::: {#refs}
+:::
