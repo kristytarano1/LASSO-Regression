@@ -80,10 +80,13 @@ library(ggplot2)
 library(reshape2)
 library(tidyr)
 library(purrr)
+library(readr)
 
 # Load Data
 
 Variables <- read.csv("Variables - Sheet1.csv", header = TRUE)
+Variables <- read_csv("https://raw.githubusercontent.com/noojoya/STA6257_Project_LASSO-Regression/main/train_genetics.csv")
+
 
 # Display the Variables table
 
