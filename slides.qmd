@@ -322,15 +322,14 @@ f1_score
 
 ## Conclusion
 
-::: {.callout-tip title="Performance"}
+1. Performance
 
 Accuracy: 0.494,   Kappa: 1 → same with a coin toss
 
 Effective variables: genes in mother’s side, paternal gene, inherited from father     
 
-:::
 
-::: {.callout-tip title="Following the Process"}
+2. Following the Process
 
 Pre-processing → EDA → Analysis → Interpretation 
 
@@ -338,9 +337,8 @@ Pre-processing → EDA → Analysis → Interpretation
 
 2) Finding Lambda value → Model setup → LASSO regression → Confusion Matrix
 
-:::
 
-::: {.callout-tip title="Lessons Learned"}
+3. Lessons Learned
 
 Do we extract and use proper variables?
 
@@ -350,7 +348,6 @@ What if only same class of variables are used to make a model? e.g., binary, cat
 
 Selected variables through the feature selection might have helped to improve
 
-:::
 
 
 ## References
