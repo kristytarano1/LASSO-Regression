@@ -38,6 +38,8 @@ $$ \hat{\beta} = \arg\min_{\beta} \left( \frac{1}{2n} \sum_{i=1}^n (y_i - X_i \b
 L1 Penalization Portion:
 
 $$ \lambda \sum_{j=1}^p |\beta_j| $$
+Log Loss:
+$$ \text{Log Loss} = -\frac{1}{n} \sum_{i=1}^n \left[ y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right] $$
 
 K-Fold Cross Validation: 
 
@@ -48,7 +50,11 @@ $$  \frac{1}{K} \sum_{k=1}^K \text{Err}_k $$
 
 ### Data and Visualization
 
-The data employed throughout this study was sourced from a genomics dataset which recorded various demographic and health indicators describing a set of patients’ respective disorders and disorder subclasses. The dataset contains 45 variables that are a mix between categorical and continuous types which ultimately describe the genetic disorders. This data was originally split into individual training and testing datasets, but for this study only the training dataset was utilized. The training data was split into its own training and testing set for proof of concept. 
+- Missing Data and Imputation Consideration
+
+- K-Fold Cross Validation Reasoning
+
+- Model Results & Validation
 
 #### Variables in Original Dataset
 
@@ -78,10 +84,13 @@ library(ggplot2)
 library(reshape2)
 library(tidyr)
 library(purrr)
+library(readr)
 
 # Load Data
 
 Variables <- read.csv("Variables - Sheet1.csv", header = TRUE)
+Variables <- read_csv("https://raw.githubusercontent.com/noojoya/STA6257_Project_LASSO-Regression/main/train_genetics.csv")
+
 
 # Display the Variables table
 
