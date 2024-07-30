@@ -6,10 +6,6 @@ format:
   revealjs:
     theme: league 
     scrollable: true
-    chalkboard:
-      theme: whiteboard
-      boardmarker-width: 5
-      buttons: True
 course: STA 6257 - Advanced Statistical Modeling
 bibliography: references.bib # file contains bibtex for references
 #always_allow_html: true # this allows to get PDF with HTML features
