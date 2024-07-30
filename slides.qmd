@@ -36,10 +36,6 @@ Multinomial Logistic Regression:
 $$ logit(Pi)=ln(\frac{Pi}{Preference})  = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_k x_k $$
 
 
-K-Fold Cross Validation: 
-
-$$  \frac{1}{K} \sum_{k=1}^K \text{Err}_k $$
-
 LASSO Regression: 
 
 $$ \hat{\beta} = \arg\min_{\beta} \left( \frac{1}{2n} \sum_{i=1}^n (y_i - X_i \beta)^2 + \lambda \sum_{j=1}^p |\beta_j| \right) $$
@@ -47,6 +43,9 @@ L1 Penalization Portion:
 
 $$ \lambda \sum_{j=1}^p |\beta_j| $$
 
+K-Fold Cross Validation: 
+
+$$  \frac{1}{K} \sum_{k=1}^K \text{Err}_k $$
 
 
 ## Analysis and Results
