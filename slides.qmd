@@ -6,10 +6,6 @@ format:
   revealjs:
     theme: league 
     scrollable: true
-    chalkboard:
-      theme: whiteboard
-      boardmarker-width: 5
-      buttons: True
 course: STA 6257 - Advanced Statistical Modeling
 bibliography: references.bib # file contains bibtex for references
 #always_allow_html: true # this allows to get PDF with HTML features
@@ -42,6 +38,8 @@ $$ \hat{\beta} = \arg\min_{\beta} \left( \frac{1}{2n} \sum_{i=1}^n (y_i - X_i \b
 L1 Penalization Portion:
 
 $$ \lambda \sum_{j=1}^p |\beta_j| $$
+Log Loss:
+$$ \text{Log Loss} = -\frac{1}{n} \sum_{i=1}^n \left[ y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right] $$
 
 K-Fold Cross Validation: 
 
