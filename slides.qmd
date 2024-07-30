@@ -1,5 +1,5 @@
 ---
-title: "Predictive Capabailites of <br> LASSO Regression "
+title: "Predictive Capabilities of LASSO Regression "
 author: "Kayla Hayes, Kristy Tarano, HJ Kim, Andrew Melara-Suazo"
 date: '`r Sys.Date()`'
 format: 
