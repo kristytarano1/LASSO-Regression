@@ -20,10 +20,23 @@ editor:
 
 ## Introduction & Literature Review {.smaller}
 
-- Diagnosing genetic disorders has been a significant challenge for thousands of years, requiring substantial time and resources, and is often hindered by inefficiencies in computerized decision-making systems in medical settings[@claussnitzer2020] [@liu2023] [@tamburrano2020].
-- Machine learning has advanced the diagnosis of genetic disorders, with linear models effectively predicting disorder outcomes by targeting gene expression patterns[@raza2022] [@liu2019].
-- Logistic regression, optimized with LASSO (Least Absolute Shrinkage and Selection Operator) regression, simplifies models and improves the selection of independent variables, addressing issues like overfitting and multicollinearity, thereby enhancing predictive accuracy[@rusyana2021] [@ranstam2018].
-- This study aims to use demographic and health indicators to predict disorder sub-classes by combining LASSO and multinomial logistic regression, focusing on key information to understand factors influencing diagnoses and improve diagnostic efficiency.
+- Diagnosing genetic disorders has been a significant challenge for thousands of years. Genetic predispositions are now a prime focus for medical professionals to make faster diagnoses [@claussnitzer2020].
+
+- Substantial time and resources are required to analyze genomes which has spurred advancements in technology [@liu2023]. 
+
+- Diagnoses still often hindered by inefficiencies in computerized decision-making systems [@tamburrano2020].
+
+- Machine learning for assistance in diagnosis of genetic disorders is now more commonplace, with linear models more accurately predicting disorder outcomes through targeting gene mutation and expression patterns [@raza2022] [@liu2019].
+
+- Logistic regression, optimized with LASSO (Least Absolute Shrinkage and Selection Operator) regression, simplifies models and improves the selection of independent variables to address issues, such as those below, thereby enhancing predictive precision [@rusyana2021] [@ranstam2018]:
+
+  1. Overfitting
+  2. Overestimation
+  3. Multicollinearity
+
+- This study employs the use of demographic and health indicators to predict disorder sub-classes by combining LASSO and multinomial logistic regression. 
+
+- Focuses on key information to allow better understanding of the factors influencing diagnoses and improve diagnostic efficiency.
 
 ## Methods {.smaller}
 
@@ -45,16 +58,13 @@ K-Fold Cross Validation:
 
 $$  \frac{1}{K} \sum_{k=1}^K \text{Err}_k $$
 
-
-## Analysis and Results
-
-### Data and Visualization
+## Data & Visualization
 
 - Missing Data and Imputation Consideration
 
 - K-Fold Cross Validation Reasoning
 
-- Model Results & Validation
+- Model Results & Validation <br>
 
 #### Variables in Original Dataset
 
@@ -94,6 +104,7 @@ Variables <- read_csv("https://raw.githubusercontent.com/noojoya/STA6257_Project
 
 ```
 
+
 #### Target Data from Original Dataset
 
 ```{r, warning=FALSE, echo=TRUE}
@@ -109,7 +120,7 @@ Imputation Consideration & Decision: N/A of missing data was ultimately used ins
 
 Split: 20/80 ratio
 
-Lamda Value: 0.0002451
+Lambda Value: 0.0002451
 
 Deviance: 99.9% 
 
@@ -174,15 +185,6 @@ VIM::aggr(dt,prop=FALSE,numbers=TRUE)
 
 
 
-```
-```
-
-```
-
-
-```
-
-
 ## Statistical Analysis
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
@@ -224,7 +226,7 @@ y <- as.factor(train_data$`Genetic Disorder`)
 x <- data.matrix(train_data[,c ("Genes in mother's side",'Maternal gene','Paternal gene' ,'Inherited from father', 'Blood cell count (mcL)', 'Respiratory Rate (breaths/min)_Tachypnea', 'Heart Rate (rates/min_Tachycardia','Gender_Female', 'Gender_Male','Birth asphyxia_No record', 'Birth asphyxia_Not available','Birth asphyxia_Yes','Folic acid details (peri-conceptional)', 'H/O serious maternal illness', 'H/O radiation exposure (x-ray)_No', 'H/O radiation exposure (x-ray)_Not applicable', 'H/O radiation exposure (x-ray)_Yes', 'H/O substance abuse_No', 'H/O substance abuse_Not applicable', 'H/O substance abuse_Yes', 'Assisted conception IVF/ART', 'History of a0malies in previous pregnancies', 'Birth defects_Singular', 'Blood test result_inconclusive', 'Blood test result_normal', 'Blood test result_slightly abnormal','White Blood cell count (thousand per microliter)', 'Symptom 1', 'Symptom 2','Symptom 3','Symptom 4', 'Symptom 5', 'Test 1', 'Test 2','Test 3','Test 4', 'Test 5', 'Disorder Subclass_Cancer', 'Disorder Subclass_Cystic fibrosis', 'Disorder Subclass_Diabetes', 'Disorder Subclass_Hemochromatosis', "Disorder Subclass_Leber's hereditary optic neuropathy", 'Disorder Subclass_Leigh syndrome', 'Disorder Subclass_Mitochondrial myopathy', 'Disorder Subclass_Tay-Sachs')])
 
 
-#Looking for optimal lamda value using k-fold cross validation
+#Looking for optimal lambda value using k-fold cross validation
 cross_val_model <- cv.glmnet(x, y, family = "multinomial", alpha= 1)
 
 #Looking for the best lambda value 
@@ -237,7 +239,7 @@ min_lambda
 #Graph of test MSE error
 plot(cross_val_model)
 
-#Creating our LASSO regression model 
+#Creating LASSO regression model 
 gene_model <- glmnet(x, y, family = "multinomial", alpha = 1, lambda = min_lambda)
 
 #Coefficients of the model
@@ -306,11 +308,11 @@ Pre-processing → EDA → Analysis → Interpretation
 
 3. Lessons Learned
 
-Do we extract and use proper variables?
+Did we extract and use proper variables?
 
 The parameter used in the model followed the right recipe → feature selection needs improvement
 
-What if only same class of variables are used to make a model? e.g., binary, categorical, continuous is separately used
+What if only same class of variables were used to make a model? e.g., binary, categorical, continuous is separately used
 
 Selected variables through the feature selection might have helped to improve
 
