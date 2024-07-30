@@ -17,8 +17,6 @@ editor:
     wrap: 72
 ---
 
-##Slides
-<br>
 [Presentation](slides.html)
 
 ## Introduction & Literature Review
