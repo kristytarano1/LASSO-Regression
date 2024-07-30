@@ -50,7 +50,11 @@ $$  \frac{1}{K} \sum_{k=1}^K \text{Err}_k $$
 
 ### Data and Visualization
 
-The data employed throughout this study was sourced from a genomics dataset which recorded various demographic and health indicators describing a set of patients’ respective disorders and disorder subclasses. The dataset contains 45 variables that are a mix between categorical and continuous types which ultimately describe the genetic disorders. This data was originally split into individual training and testing datasets, but for this study only the training dataset was utilized. The training data was split into its own training and testing set for proof of concept. 
+- Missing Data and Imputation Consideration
+
+- K-Fold Cross Validation Reasoning
+
+- Model Results & Validation
 
 #### Variables in Original Dataset
 
