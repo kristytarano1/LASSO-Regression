@@ -58,8 +58,8 @@ Lambda with the sums of the absolute values of the estimated parameters, demonst
 
 $$ \lambda \sum_{j=1}^p |\beta_j| $$
 
-K-Fold Cross Validation involves splitting the data into "k" number of
-folds. The first formula shown here computes log loss for each fold which then is summed up to get an overall error measure for each lambda. K-Fold Cross Validation was used to determine the best lambda value, that results in the minimum mean cross-validated error (log loss).
+
+K-Fold Cross Validation involves splitting the data into "k" number of folds. The first formula shown here computes log loss for each fold which then is summed up to get an overall error measure for each lambda. K-Fold Cross Validation was used to determine the best lambda value, that results in the minimum mean cross-validated error (log loss) [@yates2023].
 
 $$ \text{Log Loss} = -\frac{1}{n} \sum_{i=1}^n \left[ y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right] $$
 
@@ -69,15 +69,9 @@ $$ \text{K-Fold Cross Validation} = \frac{1}{K} \sum_{k=1}^K \text{Err}_k $$
 
 ### Data and Visualization
 
-The data employed throughout this study was sourced from a genomics
-dataset which recorded various demographic and health indicators
-describing a set of patients' respective disorders and disorder
-subclasses. The dataset contains 45 variables that are a mix between
-categorical and continuous types which ultimately describe the genetic
-disorders. This data was originally split into individual training and
-testing datasets, but for this study only the training dataset was
-utilized. The training data was split into its own training and testing
-set for proof of concept.
+The data employed throughout this study is sourced from a genomics dataset which recorded various demographic and health indicators
+describing a set of patients' respective disorders and disorder subclasses. The dataset contains 45 variables that are a mix between
+categorical and continuous types which ultimately describe the genetic disorders. This data in its original form is split into individual training and testing datasets, but for this study only the training dataset is utilized. The training data itself is split into its own training and testing set for proof of concept.
 
 #### Variables in Original Dataset
 
@@ -130,7 +124,7 @@ datatable(Target)
 
 ```
 
-#### Missing Values
+#### Data Cleaning
 
 During pre-processing, non-informative patient identification variables
 were cleaned from the dataset to remove insignificant predictive
@@ -152,103 +146,6 @@ amongst the variables of importance. The final model had an accuracy of
 is able to create a ratio of the total amount of predictions that were
 true. This ultimately confirms the performance of the model on the
 testing data and predicting genetic disorder outcomes.
-
-```{r, warning=FALSE, echo=TRUE}
-
-df <- read_excel("train_genetics.xlsx")
-# dim(df)
-# glimpse(df)
-df <- df[, !names(df) %in% c("Patient Id", "Patient First Name", "Family Name", "Father's name", "Institute Name", "Location of Institute", "Test 1", "Test 2", "Test 3", "Test 4", "Test 5", "Symptom 1", "Symptom 2", "Symptom 3", "Symptom 4", "Symptom 5", "Parental consent", "Follow-up", "H/O radiation exposure (x-ray)", "H/O substance abuse", "Birth asphyxia")]
-# datatable(df)
-
-# Missing value check
-
-datatable(miss_var_summary(df))
-
-VIM::aggr(df,prop=FALSE,numbers=TRUE)
-
-#df <- df %>% filter(!is.na(df$`Mother's age`))
-#df <- df %>% filter(!is.na(df$`Father's age`))
-#VIM::aggr(df,prop=FALSE,numbers=TRUE)
-#naniar::miss_var_summary(df)
-
-dt <- na.omit(df)
-dim(dt)
-sum(is.na(dt))
-
-is.data.table(dt) # to see if data.table
-dt <- as.data.table(dt)
-
-# Convert Categorical data into numerical data
-
-# Function to convert categorical variables to numeric
-convert_to_numeric <- function(x) {
-  if (is.numeric(x)) return(x)
-  factor_x <- as.factor(x)
-  as.numeric(factor_x)
-}
-
-# List of columns to convert (excluding already numeric columns and ID)
-
-columns_to_convert <- c("Status", "Respiratory Rate (breaths/min)", "Heart Rate (rates/min", "Autopsy shows birth defect (if applicable)", "Place of birth", "Assisted conception IVF/ART", "History of anomalies in previous pregnancies","Birth defects", "Blood test result", "Genetic Disorder", "Disorder Subclass", "Gender")
-
-# Convert specified columns to numeric
-dt[, (columns_to_convert) := lapply(.SD, convert_to_numeric), .SDcols = columns_to_convert]
-
-# Special handling for "Respiratory Rate" and "Heart Rate" columns
-dt[, `Respiratory Rate (breaths/min)` := as.numeric(sub("Normal \\(30-60\\)", "Tachycardia", `Respiratory Rate (breaths/min)`))]
-dt[, `Heart Rate (rates/min` := as.numeric(sub("Normal", "Tachycardia", `Heart Rate (rates/min`))]
-dt[, `Gender` := as.numeric(sub("Male", "Female", `Gender`))]
-
-
-# Convert Yes/No columns to 1/0
-yes_no_columns <- c("Genes in mother's side", "Inherited from father", "Maternal gene", "Paternal gene", "Folic acid details (peri-conceptional)", "H/O serious maternal illness")
-
-dt[, (yes_no_columns) := lapply(.SD, function(x) as.numeric(x == "Yes")), .SDcols = yes_no_columns]
-
-
-VIM::aggr(dt,prop=FALSE,numbers=TRUE)
-
-```
-
-#### Cleaned Data
-
-```{r, warning=FALSE, echo=TRUE}
-
-datatable(dt)
-
-```
-
-#### Histograms
-
-```{r, warning=FALSE, echo=TRUE}
-
-# EDA
-# graphs
-
-dt %>%
-  gather() %>% 
-  ggplot(aes(value)) +
-  facet_wrap(~ key, scales = "free") +
-  geom_histogram()
-
-```
-
-#### Correlation Heatmap
-
-```{r, warning=FALSE, echo=TRUE}
-
-# creating correlation matrix
-corr_mat <- round(cor(dt),2)
-melted_corr_mat <- melt(corr_mat)
-
-# plotting the correlation heatmap
-ggplot(data = melted_corr_mat, aes(x=Var1, y=Var2,
-                                   fill=value)) + 
-  geom_tile()
-
-
-```
 
 ## Statistical Analysis
 
