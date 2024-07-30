@@ -92,10 +92,6 @@ Variables <- read.csv("Variables - Sheet1.csv", header = TRUE)
 Variables <- read_csv("https://raw.githubusercontent.com/noojoya/STA6257_Project_LASSO-Regression/main/train_genetics.csv")
 
 
-# Display the Variables table
-
-datatable(Variables)
-
 ```
 
 #### Target Data from Original Dataset
@@ -104,17 +100,20 @@ datatable(Variables)
 
 Target <- read.csv("Target - Sheet1.csv", header = TRUE)
 
-# Display the Target Data table
-
-datatable(Target)
 
 ```
 
 #### Missing Values
 
-During pre-processing, non-informative patient identification variables were cleaned from the dataset to remove insignificant predictive variables relating to the outcome. A multinomial logistic regression model was then developed to predict a genetic disorder outcome for patients based solely on their recorded information.  
+Imputation Consideration & Decision: N/A of missing data was ultimately used instead of an imputation method   
 
-Because missing values were minimal, omission of missing values was performed to reduce the bias of introducing an imputation method as well as to meet the assumptions of binary logistic regression. The dataset was split using a 20:80 ratio, and K-Fold Cross Validation was used to find the most appropriate lambda value for performing LASSO regression. A lambda value of (0.0002451) was yielded and a multinomial logistic regression was then performed using R. Cross validation also reported a deviance of  99.9%. This means the goodness-of-fit is very high and that LASSO regression is able to account for virtually all variability amongst the variables of importance. The final model had an accuracy of 0.494 which was confirmed with a confusion matrix. The confusion matrix is able to create a ratio of the total amount of predictions that were true. This ultimately confirms the performance of the model on the testing data and predicting genetic disorder outcomes. 
+Split: 20/80 ratio
+
+Lamda Value: 0.0002451
+
+Deviance: 99.9% 
+
+Accuracy: 0.494 provided by confusion matrix 
 
 
 ```{r, warning=FALSE, echo=TRUE}
@@ -125,9 +124,7 @@ df <- read_excel("train_genetics.xlsx")
 df <- df[, !names(df) %in% c("Patient Id", "Patient First Name", "Family Name", "Father's name", "Institute Name", "Location of Institute", "Test 1", "Test 2", "Test 3", "Test 4", "Test 5", "Symptom 1", "Symptom 2", "Symptom 3", "Symptom 4", "Symptom 5", "Parental consent", "Follow-up", "H/O radiation exposure (x-ray)", "H/O substance abuse", "Birth asphyxia")]
 # datatable(df)
 
-# Missing value check
 
-datatable(miss_var_summary(df))
 
 VIM::aggr(df,prop=FALSE,numbers=TRUE)
 
@@ -175,43 +172,12 @@ VIM::aggr(dt,prop=FALSE,numbers=TRUE)
 
 ```
 
-#### Cleaned Data
 
-```{r, warning=FALSE, echo=TRUE}
-
-datatable(dt)
 
 ```
-
-
-#### Histograms
-
-```{r, warning=FALSE, echo=TRUE}
-
-# EDA
-# graphs
-
-dt %>%
-  gather() %>% 
-  ggplot(aes(value)) +
-  facet_wrap(~ key, scales = "free") +
-  geom_histogram()
-
 ```
 
-
-#### Correlation Heatmap
-
-```{r, warning=FALSE, echo=TRUE}
-
-# creating correlation matrix
-corr_mat <- round(cor(dt),2)
-melted_corr_mat <- melt(corr_mat)
-
-# plotting the correlation heatmap
-ggplot(data = melted_corr_mat, aes(x=Var1, y=Var2,
-                                   fill=value)) + 
-  geom_tile()
+```
 
 
 ```
