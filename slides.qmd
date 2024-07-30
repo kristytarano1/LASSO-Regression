@@ -18,7 +18,7 @@ editor:
     wrap: 72
 ---
 
-## Introduction {.smaller}
+## Introduction & Literature Review {.smaller}
 
 - Diagnosing genetic disorders has been a significant challenge for thousands of years, requiring substantial time and resources, and is often hindered by inefficiencies in computerized decision-making systems in medical settings[@claussnitzer2020] [@liu2023] [@tamburrano2020].
 - Machine learning has advanced the diagnosis of genetic disorders, with linear models effectively predicting disorder outcomes by targeting gene expression patterns[@raza2022] [@liu2019].
