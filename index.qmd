@@ -59,7 +59,7 @@ Lambda with the sums of the absolute values of the estimated parameters, demonst
 $$ \lambda \sum_{j=1}^p |\beta_j| $$
 
 
-K-Fold Cross Validation involves splitting the data into "k" number of folds. The first formula shown here computes log loss for each fold which then is summed up to get an overall error measure for each lambda. K-Fold Cross Validation was used to determine the best lambda value, that results in the minimum mean cross-validated error (log loss).
+K-Fold Cross Validation involves splitting the data into "k" number of folds. The first formula shown here computes log loss for each fold which then is summed up to get an overall error measure for each lambda. K-Fold Cross Validation was used to determine the best lambda value, that results in the minimum mean cross-validated error (log loss) [@yates2023].
 
 $$ \text{Log Loss} = -\frac{1}{n} \sum_{i=1}^n \left[ y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right] $$
 
