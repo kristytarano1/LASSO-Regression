@@ -1,5 +1,5 @@
 ---
-title: "Predictive Capabilities ofLASSO Regression"
+title: "Predictive Capabilities of LASSO Regression"
 author: "Kayla Hayes, HJ Kim, Kristy Tarano, Andrew Melara-Suazo"
 date: '`r Sys.Date()`'
 format:
@@ -17,73 +17,21 @@ editor:
     wrap: 72
 ---
 
+##Slides
+<br>
 [Presentation](slides.html)
 
-## Introduction
+## Introduction & Literature Review
 
-### What is LASSO Regression?
+Genetics continue to shape human existence, even after thousands of years. With the use of advancing technology and increasingly available genotype and phenotype data, biomedical scientists are making significant strides in the understanding of genetic predisposition later leading to the development of diseases or disorders [@claussnitzer2020]. The time commitment required for decision making in the diagnosis of cases involving genome variation is daunting due to the complex nature of the clinical effects, and as a consequence the medical industry now relies more heavily on technology to assist in these diagnoses. In one article, a collaboration between China's BGI Genomics and Fuyang People's Hospital demonstrated the abilities of a chip designed to detect the many variations in genes. The end goal of chips like these is to lower overall time required and cost of diagnoses, especially those relating to genetic mutations [@liu2023]. <br>
 
-Genetics and the diagnoses of problematic and infrequent disorders
-caused by genetics has shaped our existence for thousands of years
-[@claussnitzer2020]. The time commitment to diagnose each case correctly
-and efficiently is a daunting one to say the least [@liu2023]. Medical
-instruments are expensive and the inefficiencies that exist with overuse
-of computerized decision making forecasting is apparent in labs and
-hospitals, in this case a large university hospital [@tamburrano2020].
-Studies such as the aforementioned put the research community at a
-crossroads since these computerized diagnosing systems are intended to
-be a great asset and tool for medical professionals to utilize during
-their diagnosing procedures. With that being said, machine learning and
-the diagnosing of genetic disorders has made great strides in the
-genomics world with an increasing variety of machine learning models
-being applied to predictive modeling [@raza2022]. Linear models have
-shown to be an ample way of predicting disorder outcomes through the
-targeting of what is often the root cause, gene expression and the
-patterns that can be extrapolated [@liu2019]. Aside from the work of
-linear models, many of these disorders have been linked to varying
-degrees of gene expression and mutation, proper organizing of these
-categories through means such as a classification method provides
-insight [@raza2022]. Moreover, the classification technique, Logistic
-regression, is capable of predicting various outcome variables related
-to cancer status and the probability of such an event occurring due to
-demographic data [@meysami2023]. Choosing to optimize a technique like
-Logistic regression with a regularization method such as LASSO
-regression indicates a simplified overall model and an increase in
-selected independent variables for a predictive outcome[@rusyana2021].
-<br>
+Even with technology, however, there are still many inefficiencies to address. One of these inefficiencies exists in the overuse of Computerized Clinical Decision Support Systems (CCDSS) to order lab tests such as in the case of Fondazione Policlinico Universitario Agostino Gemelli, a large university hospital located in Rome. This study found that labs are required to make critical judgments in 70 to 80% of cases, causing it to become common practice for medical professionals to order many tests that are unnecessary [@tamburrano2020]. Studies like that of the CCDSS in the Italian university hospital put the research community at a crossroads because these computerized diagnosis systems are intended to be an assistive tool for medical professionals to utilize. Crossroads aside, researchers continue to break boundaries in the diagnoses of genetic disorders with the increasing application of machine learning to create predictive models. Because so many dieseases and disorders are linked to varying degrees of gene expression and mutation, proper organization of these categories through classification methods is needed to gain insight [@raza2022]. <br>
 
-LASSO, or Least Absolute Shrinkage and Selection Operator regression is
-a robust technique used to address common modeling issues like
-overfitting, overestimation, and multicollinearity [@ranstam2018]. LASSO
-regression's power as a regularization method is exhibited best when
-applied to datasets demonstrating these problems such as this study on
-multicollinearity in vehicle crash data [@abdulhafedh2022]. The Mean
-Squared Error is commonly used to measure the accuracy of any given
-regression model and when utilizing LASSO regression, any coefficients
-with very high values can be reduced all the way down to zero by the
-introduction of a bias [@hodson2022]. LASSO adds a penalization
-parameter, also referred to as the L1 Penalty, which determines how much
-shrinkage will occur to the model's coefficients [@freijeiro2022]. The
-L1 Penalty is determined by λ multiplied by the absolute value of the
-slope of a fitted line where the sum of squared residuals is added to
-the penalty to increase the bias and offset the variance of the model
-which has shown to be useful for developing predictive models
-[@greenwood2020]. The use of LASSO regression to perform feature
-selection has shown to be productive when coupled with a machine
-learning model to reach a high level of accuracy and precision when
-predicting gene patterns relating to cancer diagnosis [@guha2024]. <br>
+Linear models are proven to be an ample method of predicting disorder outcomes through targeting root causes and gene expressions, and analyzing the subsequent patterns that are extrapolated from them [@liu2019]. Classification techniques such as logistic regression are capable of predicting various outcome variables related to cancer status and the probability of demographics causing an event like this to occur [@meysami2023]. Optimizing logistic regression models with a regularization method known as LASSO regression creates a simplified overall model and an increase in selected independent variables for a predictive outcome [@rusyana2021]. LASSO, or Least Absolute Shrinkage and Selection Operator regression is a robust technique used to address common modeling issues like overfitting, overestimation, and multicollinearity [@ranstam2018]. LASSO regression's power as a regularization method is exhibited best when applied to datasets demonstrating the aforementioned problems, such as the multicollinearity that naturally exists in vehicle crash data [@abdulhafedh2022]. <br>
 
-In this study, we propose to use demographic factors and health
-indicators to predict various disorder sub-classes. Moreover, we combine
-the optimizing capabilities of LASSO regression with the predictive
-capabilities of multinomial logistic regression to train our model so
-that we can determine a correct disorder and subclass outcome. We state
-that several participant identifying fields are omitted from the
-analysis and that the primary goal is to solely use key demographic and
-health information to make all determinations. This model is being
-developed to better understand what factors play a role in the diagnoses
-of specific disorders as well as how machine learning can be used as a
-tool to increase the efficiency of medical diagnoses.
+The Mean Squared Error is commonly used to measure the accuracy of any given regression model and when utilizing LASSO regression, any coefficients with very high values can be reduced all the way down to zero by the introduction of a bias [@hodson2022]. LASSO adds a penalization parameter, also referred to as the L1 Penalty, which determines how much shrinkage will occur to the model's coefficients [@freijeiro2022]. The L1 Penalty is determined by λ multiplied against the absolute value of the slope of a fitted line where the sum of squared residuals is added to the penalty to increase the bias and offset the variance of the model which proves to be useful for developing predictive models [@greenwood2020]. The use of LASSO regression to perform feature selection produces a higher level of accuracy and precision when coupled with a machine learning model to predict gene patterns relating to cancer diagnosis [@guha2024]. <br>
+
+In this analysis, demographic factors and health indicators are used to predict various disorder sub-classes. Moreover, the optimizing capabilities of LASSO regression are combined with the predictive capabilities of multinomial logistic regression to train a model that can determine a correct disorder and subclass outcome. Several participant identifying fields are omitted from the analysis and the primary goal is to solely use key demographic and health information to make all determinations. This model is ideally assists in better understanding what factors play a role in the diagnoses of specific disorders as well as how machine learning can be used as a tool to increase the efficiency of medical diagnoses.
 
 ## Methods
 
